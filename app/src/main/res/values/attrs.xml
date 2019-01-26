@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ParallaxThreeLayerView">
+        <attr name="intensity_background" format="float" />
+        <attr name="intensity_middleground" format="float" />
+        <attr name="intensity_foreground" format="float" />
+        <attr name="image_background" format="reference" />
+        <attr name="image_middleground" format="reference" />
+        <attr name="image_foreground" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ParallaxImageView">
+        <attr name="intensity" format="float" />
+        <attr name="horizontal_tilt_sensitivity" format="float" />
+        <attr name="vertical_tilt_sensitivity" format="float" />
+        <attr name="forward_tilt_offset" format="float" />
+        <attr name="scaled_intensity" format="boolean" />
+    </declare-styleable>
+
+</resources>
