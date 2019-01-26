@@ -7,6 +7,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.AttributeSet
+import android.view.WindowManager
 import android.widget.ImageView
 import com.rusili.tiltparallax.R
 import androidx.annotation.FloatRange
@@ -66,7 +67,7 @@ class ParallaxImageView @JvmOverloads constructor(
     private var yOffset: Float = 0f
 
     init {
-        scaleType = AppCompatImageView.ScaleType.MATRIX
+        scaleType = ImageView.ScaleType.MATRIX
 
         attrs?.let {
             context.theme.obtainStyledAttributes(
@@ -124,7 +125,11 @@ class ParallaxImageView @JvmOverloads constructor(
     }
 
     override fun onSensorChanged(event: SensorEvent) {
-        sensorInterpreter.interpretSensorEvent(Float3(event.values))?.let { float3 ->
+        val rotation = (context as WindowManager)
+            .getSystemService (Context.WINDOW_SERVICE)).getDefaultDisplay()
+            .getRotation()
+
+        sensorInterpreter.interpretSensorEvent(Float3(event.values), rotation)?.let { float3 ->
             setTranslate(float3.z, float3.y)
             configureMatrix()
         }
@@ -251,9 +256,12 @@ class ParallaxImageView @JvmOverloads constructor(
         val viewHeight = height.toFloat()
         val viewWidth = width.toFloat()
 
-        val scale = parallaxCalculator.overallScale(drawableHeight, drawableWidth, viewHeight, viewWidth)
-        xOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableWidth, viewWidth)
-        yOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableHeight, viewHeight)
+        val scale =
+            parallaxCalculator.overallScale(drawableHeight, drawableWidth, viewHeight, viewWidth)
+        xOffset =
+            parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableWidth, viewWidth)
+        yOffset =
+            parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableHeight, viewHeight)
 
         translationMatrix.apply {
             set(imageMatrix)

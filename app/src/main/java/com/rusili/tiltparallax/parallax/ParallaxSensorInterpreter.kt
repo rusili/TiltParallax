@@ -1,5 +1,6 @@
 package com.rusili.tiltparallax.parallax
 
+import android.view.Surface
 import com.rusili.tiltparallax.common.isNotZero
 
 /**
@@ -9,37 +10,40 @@ import com.rusili.tiltparallax.common.isNotZero
  * https://stackoverflow.com/a/42628846
  */
 private const val DEFAULT_HORIZONTAL_TILT_SENSITIVITY = 1.5f
-private const val DEFAULT_VERTICAL_TILT_SENSITIVITY = 0.75f     // By default, vertical sensitivity is 1/2 of horizontal
+private const val DEFAULT_VERTICAL_TILT_SENSITIVITY = 0.75f
 private const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
 
 class SensorInterpreter {
     private val vectors = Float3()
 
-    internal var horizontalTiltSensitivity = DEFAULT_HORIZONTAL_TILT_SENSITIVITY
-    internal var verticalTiltSensitivity = DEFAULT_VERTICAL_TILT_SENSITIVITY
+    var horizontalTiltSensitivity = DEFAULT_HORIZONTAL_TILT_SENSITIVITY
+    var verticalTiltSensitivity = DEFAULT_VERTICAL_TILT_SENSITIVITY
 
     // How vertically centered the image is while the phone is "naturally" tilted forwards.
-    internal var forwardTiltOffset = DEFAULT_FORWARD_TILT_OFFSET
+    var forwardTiltOffset = DEFAULT_FORWARD_TILT_OFFSET
 
-    fun interpretSensorEvent(float3: Float3): Float3? =
-        vectors.takeIf(Float3::noZeroValues)
+    fun interpretSensorEvent(
+        float3: Float3,
+        rotation: Int
+    ): Float3? =
+        vectors.takeIf { float3.noZeroValues() }
             ?.apply {
-                setDefaultOrientationValues(float3)
+                setDefaultOrientationValues(rotation)
                 setRollPitchPercentages()
                 addForwardTilt()
                 adjustTiltSensitivity()
                 lockToViewBounds()
             }
 
-    // TODO: Add other orientations
     /**
      * Adjusts values depending on phone orientation.
      */
-    private fun Float3.setDefaultOrientationValues(event: Float3) =
-        apply {
-            x = event.x
-            y = -event.y
-            z = -event.z
+    private fun Float3.setDefaultOrientationValues(rotation: Int) =
+        when (rotation) {
+            Surface.ROTATION_90 -> apply { applyRotation(x, z, -y) }
+            Surface.ROTATION_180 -> apply { applyRotation(x, y, z) }
+            Surface.ROTATION_270 -> apply { applyRotation(x, -z, y) }
+            else -> apply { applyRotation(x, -y, -z) }
         }
 
     private fun Float3.setRollPitchPercentages() =
@@ -66,17 +70,13 @@ class SensorInterpreter {
      * Don't allow the image to pan past the bounds of the image.
      */
     private fun Float3.lockToViewBounds() =
-        apply {
-            when {
-                y > 1 -> y = 1f
-                y < -1 -> y = -1f
-                z > 1 -> z = 1f
-                z < -1 -> z = -1f
-            }
+        when {
+            y > 1 -> apply { y = 1f }
+            y < -1 -> apply { y = -1f }
+            z > 1 -> apply { z = 1f }
+            z < -1 -> apply { z = -1f }
+            else -> this
         }
-
-    private fun validEvent(event: Float3) =
-        event.noZeroValues()
 }
 
 data class Float3(
@@ -85,6 +85,16 @@ data class Float3(
     var z: Float = 0.0f
 ) {
     constructor(array: FloatArray) : this(array[0], array[1], array[2])
+
+    fun applyRotation(
+        newX: Float,
+        newY: Float,
+        newZ: Float
+    ) {
+        x = newX
+        y = newY
+        z = newZ
+    }
 
     fun noZeroValues() =
         x.isNotZero() && y.isNotZero() && z.isNotZero()
