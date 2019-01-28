@@ -5,6 +5,3 @@ internal fun Float.isZero() =
 
 internal fun Float.isNotZero() =
     !this.isZero()
-
-internal fun Float.greaterThan1() =
-    this >= 1
