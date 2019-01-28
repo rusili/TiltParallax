@@ -69,46 +69,44 @@ class ParallaxImageView @JvmOverloads constructor(
     init {
         scaleType = ImageView.ScaleType.MATRIX
 
-        attrs?.let {
-            context.theme.obtainStyledAttributes(
-                attrs,
-                R.styleable.ParallaxImageView,
-                defStyle, 0
-            ).apply {
-                try {
-                    setParallaxIntensity(
-                        getFloat(
-                            R.styleable.ParallaxImageView_intensity,
-                            intensityMultiplier
-                        )
+        context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.ParallaxImageView,
+            defStyle, 0
+        ).apply {
+            try {
+                setParallaxIntensity(
+                    getFloat(
+                        R.styleable.ParallaxImageView_intensity,
+                        intensityMultiplier
                     )
-                    setScaledIntensities(
-                        getBoolean(
-                            R.styleable.ParallaxImageView_scaled_intensity,
-                            scaleIntensityPerAxis
-                        )
+                )
+                setScaledIntensities(
+                    getBoolean(
+                        R.styleable.ParallaxImageView_scaled_intensity,
+                        scaleIntensityPerAxis
                     )
-                    setHorizontalTiltSensitivity(
-                        getFloat(
-                            R.styleable.ParallaxImageView_horizontal_tilt_sensitivity,
-                            sensorInterpreter.horizontalTiltSensitivity
-                        )
+                )
+                setHorizontalTiltSensitivity(
+                    getFloat(
+                        R.styleable.ParallaxImageView_horizontal_tilt_sensitivity,
+                        sensorInterpreter.horizontalTiltSensitivity
                     )
-                    setVerticalTiltSensitivity(
-                        getFloat(
-                            R.styleable.ParallaxImageView_vertical_tilt_sensitivity,
-                            sensorInterpreter.verticalTiltSensitivity
-                        )
+                )
+                setVerticalTiltSensitivity(
+                    getFloat(
+                        R.styleable.ParallaxImageView_vertical_tilt_sensitivity,
+                        sensorInterpreter.verticalTiltSensitivity
                     )
-                    setForwardTiltOffset(
-                        getFloat(
-                            R.styleable.ParallaxImageView_forward_tilt_offset,
-                            sensorInterpreter.forwardTiltOffset
-                        )
+                )
+                setForwardTiltOffset(
+                    getFloat(
+                        R.styleable.ParallaxImageView_forward_tilt_offset,
+                        sensorInterpreter.forwardTiltOffset
                     )
-                } finally {
-                    recycle()
-                }
+                )
+            } finally {
+                recycle()
             }
         }
 
@@ -125,9 +123,9 @@ class ParallaxImageView @JvmOverloads constructor(
     }
 
     override fun onSensorChanged(event: SensorEvent) {
-        val rotation = (context as WindowManager)
-            .getSystemService (Context.WINDOW_SERVICE)).getDefaultDisplay()
-            .getRotation()
+        val rotation = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager)
+            .defaultDisplay
+            .rotation
 
         sensorInterpreter.interpretSensorEvent(Float3(event.values), rotation)?.let { float3 ->
             setTranslate(float3.z, float3.y)
@@ -168,10 +166,11 @@ class ParallaxImageView @JvmOverloads constructor(
      * @param parallaxIntensity the new intensity
      */
     fun setParallaxIntensity(@FloatRange(from = 1.0) parallaxIntensity: Float) {
-        parallaxIntensity.takeIf(it)?.let {
-            intensityMultiplier = parallaxIntensity
-            configureMatrix()
-        }
+        parallaxIntensity.takeIf { it >= 1 }
+            ?.let {
+                intensityMultiplier = parallaxIntensity
+                configureMatrix()
+            }
             ?: throw IllegalArgumentException("Parallax effect must have a intensity of 1.0 or greater")
     }
 

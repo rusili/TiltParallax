@@ -86,7 +86,7 @@ data class Float3(
 ) {
     constructor(array: FloatArray) : this(array[0], array[1], array[2])
 
-    fun applyRotation(
+    internal fun applyRotation(
         newX: Float,
         newY: Float,
         newZ: Float
@@ -96,6 +96,6 @@ data class Float3(
         z = newZ
     }
 
-    fun noZeroValues() =
+    internal fun noZeroValues() =
         x.isNotZero() && y.isNotZero() && z.isNotZero()
 }

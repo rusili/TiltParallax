@@ -8,10 +8,10 @@ package com.rusili.tiltparallax.parallax
  */
 private const val DEFAULT_OFFSET_MULTIPLIER = 0.5f
 
-class ParallaxCalculator {
+internal class ParallaxCalculator {
 
     // Make sure below maximum maxTranslationChange limit
-    fun translate(
+    internal fun translate(
         maxTranslationChange: Float,
         translation: Float,
         axis: Float,
@@ -27,7 +27,7 @@ class ParallaxCalculator {
         return axis * scale
     }
 
-    fun overallScale(
+    internal fun overallScale(
         drawableHeight: Float,
         drawableWidth: Float,
         viewHeight: Float,
@@ -38,7 +38,7 @@ class ParallaxCalculator {
             false -> viewWidth / drawableWidth
         }
 
-    fun axisOffset(
+    internal fun axisOffset(
         intensity: Float,
         scale: Float,
         drawableAxis: Float,

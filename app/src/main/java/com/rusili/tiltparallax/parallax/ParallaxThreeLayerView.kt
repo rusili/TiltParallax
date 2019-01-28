@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import androidx.core.content.res.use
 import com.rusili.tiltparallax.R
 import kotlinx.android.synthetic.main.view_gxp_parallax_layer.view.gxpParallaxBackground
 import kotlinx.android.synthetic.main.view_gxp_parallax_layer.view.gxpParallaxForeground
@@ -25,18 +26,15 @@ class ParallaxThreeLayerView @JvmOverloads constructor(
         parallaxViews = listOf<ParallaxImageView>(
             gxpParallaxBackground,
             gxpParallaxMiddleground,
-            gxpParallaxForeground)
+            gxpParallaxForeground
+        )
 
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.ParallaxThreeLayerView,
             defStyleAttr, 0
-        ).apply {
-            try {
-                setupViews()
-            } finally {
-                recycle()
-            }
+        ).use {
+            it.setupViews()
         }
     }
 
