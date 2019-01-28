@@ -121,7 +121,7 @@ class ParallaxImageView @JvmOverloads constructor(
             .defaultDisplay
             .rotation
 
-        sensorInterpreter.interpretSensorEvent(Float3(event.values), rotation)
+        sensorInterpreter.interpretSensorEvent(Float3(event.values))
             ?.let { float3 ->
                 setTranslate(float3.z, float3.y)
                 configureMatrix()
