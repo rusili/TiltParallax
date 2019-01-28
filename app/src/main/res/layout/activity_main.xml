@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<com.rusili.lib.parallax.ParallaxThreeLayerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="200dp"-->
-        <!--app:image_background="@drawable/sample_parallax_background"-->
-        <!--app:image_foreground="@drawable/sample_parallax_foreground"-->
-        <!--app:image_middleground="@drawable/sample_parallax_middleground"-->
-        <!--app:intensity_background="1.30"-->
-        <!--app:intensity_foreground="1.10"-->
-        <!--app:intensity_middleground="1.225" />-->
+    <com.rusili.lib.parallax.ParallaxThreeLayerView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:image_background="@drawable/sample_parallax_background"
+        app:image_foreground="@drawable/sample_parallax_foreground"
+        app:image_middleground="@drawable/sample_parallax_middleground"
+        app:intensity_background="1.30"
+        app:intensity_foreground="1.10"
+        app:intensity_middleground="1.225" />
 
 </FrameLayout>
