@@ -4,19 +4,19 @@
     android:layout_height="match_parent">
 
     <com.rusili.tiltparallax.parallax.ParallaxImageView
-        android:id="@+id/gxpParallaxBackground"
+        android:id="@+id/sampleParallaxBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
     <com.rusili.tiltparallax.parallax.ParallaxImageView
-        android:id="@+id/gxpParallaxMiddleground"
+        android:id="@+id/sampleParallaxMiddleground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
     <com.rusili.tiltparallax.parallax.ParallaxImageView
-        android:id="@+id/gxpParallaxForeground"
+        android:id="@+id/sampleParallaxForeground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
