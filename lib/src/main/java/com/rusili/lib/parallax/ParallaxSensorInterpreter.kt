@@ -1,7 +1,7 @@
-package com.rusili.tiltparallax.parallax
+package com.rusili.lib.parallax
 
 import android.view.Surface
-import com.rusili.tiltparallax.common.isNotZero
+import com.rusili.lib.common.isNotZero
 
 /**
  * Helper class that converts a phone's accelerometer events to x and y axis image translations for [ParallaxImageView]

@@ -1,12 +1,11 @@
-package com.rusili.tiltparallax.parallax
+package com.rusili.lib.parallax
 
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.content.res.use
-import com.rusili.tiltparallax.R
-import kotlinx.android.synthetic.main.view_parallax_three_layer.view.*
+import com.rusili.lib.R
 
 /**
  * Stacks three [ParallaxImageView]s on top of each other to simulate a 3d parallax effect.
@@ -21,10 +20,10 @@ class ParallaxThreeLayerView @JvmOverloads constructor(
     init {
         inflate(context, R.layout.view_parallax_three_layer, this)
 
-        parallaxViews = listOf<ParallaxImageView>(
-            sampleParallaxBackground,
-            sampleParallaxMiddleground,
-            sampleParallaxForeground
+        parallaxViews = listOf(
+            findViewById(R.id.parallaxBackground),
+            findViewById(R.id.parallaxMiddleground),
+            findViewById(R.id.parallaxForeground)
         )
 
         context.theme.obtainStyledAttributes(

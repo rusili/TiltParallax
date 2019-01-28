@@ -1,7 +1,6 @@
-package com.rusili.tiltparallax
+package com.rusili.lib
 
-import com.rusili.tiltparallax.parallax.ParallaxCalculator
-import org.amshove.kluent.shouldEqual
+import com.rusili.lib.parallax.ParallaxCalculator
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

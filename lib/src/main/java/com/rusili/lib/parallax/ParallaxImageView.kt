@@ -1,4 +1,4 @@
-package com.rusili.tiltparallax.parallax
+package com.rusili.lib.parallax
 
 import android.content.Context
 import android.graphics.Matrix
@@ -11,7 +11,7 @@ import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
-import com.rusili.tiltparallax.R
+import com.rusili.lib.R
 
 /**
  * Adds a parallax effect to an [AppCompatImageView] based on the phone's accelerometer.

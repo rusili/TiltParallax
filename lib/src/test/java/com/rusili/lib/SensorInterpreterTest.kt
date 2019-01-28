@@ -1,8 +1,7 @@
-package com.rusili.tiltparallax
+package com.rusili.lib
 
-import com.rusili.tiltparallax.parallax.Float3
-import com.rusili.tiltparallax.parallax.SensorInterpreter
-import org.amshove.kluent.shouldEqual
+import com.rusili.lib.parallax.Float3
+import com.rusili.lib.parallax.SensorInterpreter
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
