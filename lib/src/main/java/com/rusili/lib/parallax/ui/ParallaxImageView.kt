@@ -254,14 +254,14 @@ class ParallaxImageView @JvmOverloads constructor(
         val viewHeight = height.toFloat()
         val viewWidth = width.toFloat()
 
-        val scale = parallaxCalculator.overallScale(drawableHeight, drawableWidth, viewHeight, viewWidth)
-        xOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableWidth, viewWidth)
-        yOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableHeight, viewHeight)
+        val scale = parallaxCalculator.overallScale(intensityMultiplier, drawableHeight, drawableWidth, viewHeight, viewWidth)
+        xOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableWidth, viewWidth, xTranslation)
+        yOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableHeight, viewHeight, yTranslation)
 
         translationMatrix.apply {
             set(imageMatrix)
-            setScale(intensityMultiplier * scale, intensityMultiplier * scale)
-            postTranslate(xOffset + xTranslation, yOffset + yTranslation)
+            setScale(scale, scale)
+            postTranslate(xOffset, yOffset)
         }.also {
             imageMatrix = it
         }

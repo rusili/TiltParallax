@@ -35,21 +35,23 @@ internal class ParallaxCalculator {
     }
 
     internal fun overallScale(
+        intensity: Float,
         drawableHeight: Float,
         drawableWidth: Float,
         viewHeight: Float,
         viewWidth: Float
     ): Float =
         when (drawableWidth * viewHeight > viewWidth * drawableHeight) {
-            true -> viewHeight / drawableHeight
-            false -> viewWidth / drawableWidth
+            true -> viewHeight / drawableHeight * intensity
+            false -> viewWidth / drawableWidth * intensity
         }
 
     internal fun axisOffset(
         intensity: Float,
         scale: Float,
         drawableAxis: Float,
-        viewAxis: Float
+        viewAxis: Float,
+        axisTranslation: Float
     ): Float =
-        (viewAxis - drawableAxis * scale * intensity) * DEFAULT_OFFSET_MULTIPLIER
+        ((viewAxis - drawableAxis * scale) * DEFAULT_OFFSET_MULTIPLIER) + axisTranslation
 }
