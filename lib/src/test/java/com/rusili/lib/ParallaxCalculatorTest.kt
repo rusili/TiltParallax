@@ -139,7 +139,7 @@ class ParallaxCalculatorTest {
         val viewAxis = 1080f
 
         // Then
-        val result = testSubject.axisOffset(intensity, scale, drawableAxis, viewAxis)
+        val result = testSubject.axisOffset(intensity, scale, drawableAxis, viewAxis, xTranslation)
 
         // When
         assertEquals(result, 440f, DEFAULT_TOLERANCE)

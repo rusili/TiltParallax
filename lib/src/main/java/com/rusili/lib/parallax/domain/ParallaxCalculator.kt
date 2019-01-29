@@ -10,6 +10,13 @@ private const val DEFAULT_OFFSET_MULTIPLIER = 0.5f
 
 internal class ParallaxCalculator {
 
+    internal fun getScale(
+        mainAxisOffset: Float,
+        otherAxisOffset: Float,
+        scaleIntensityPerAxis: Boolean = false
+    ): Float =
+        if (scaleIntensityPerAxis) mainAxisOffset else Math.max(mainAxisOffset, otherAxisOffset)
+
     // Make sure below maximum maxTranslationChange limit
     internal fun translate(
         maxTranslationChange: Float,

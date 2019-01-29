@@ -233,8 +233,8 @@ class ParallaxImageView @JvmOverloads constructor(
             return
         }
 
-        val xScale = if (scaleIntensityPerAxis) xOffset else Math.max(xOffset, yOffset)
-        val yScale = if (scaleIntensityPerAxis) yOffset else Math.max(xOffset, yOffset)
+        val xScale = parallaxCalculator.getScale(xOffset, yOffset, scaleIntensityPerAxis)
+        val yScale = parallaxCalculator.getScale(yOffset, xOffset, scaleIntensityPerAxis)
 
         xTranslation = parallaxCalculator.translate(maxTranslationChange, xTranslation, x, xScale)
         yTranslation = parallaxCalculator.translate(maxTranslationChange, yTranslation, y, yScale)
