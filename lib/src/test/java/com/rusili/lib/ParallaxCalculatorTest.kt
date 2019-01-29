@@ -1,6 +1,7 @@
 package com.rusili.lib
 
 import com.rusili.lib.parallax.ParallaxCalculator
+import org.amshove.kluent.shouldEqual
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

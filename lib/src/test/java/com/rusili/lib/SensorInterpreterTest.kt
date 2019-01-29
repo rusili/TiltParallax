@@ -1,7 +1,10 @@
 package com.rusili.lib
 
-import com.rusili.lib.parallax.Float3
+import com.rusili.lib.parallax.Event3
 import com.rusili.lib.parallax.SensorInterpreter
+import org.amshove.kluent.shouldBeNull
+import org.amshove.kluent.shouldEqual
+import org.amshove.kluent.shouldNotBeNull
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -13,22 +16,22 @@ class SensorInterpreterTest {
     @Test
     fun `Given invalid sensor event, When interpretSensorEvent is called, Then return null`() {
         // Given
-        val eventArray = Float3(10f, 20f, 0f)
+        val eventArray = Event3(10f, 20f, 0f)
 
         // When
-        val result = testSubject.interpretSensorEvent(eventArray)
+        val result = testSubject.interpretSensorEvent(eventArray, 0)
 
         // Then
-        result shouldEqual null
+        result.shouldBeNull()
     }
 
     @Test
     fun `Given valid sensor event, When interpretSensorEvent is called, Then return adjusted values`() {
         // Given
-        val eventArray = Float3(1f, 2f, 3f)
+        val eventArray = Event3(1f, 2f, 3f)
 
         // When
-        val result = testSubject.interpretSensorEvent(eventArray)
+        val result = testSubject.interpretSensorEvent(eventArray, 0)
 
         // Then
         assertEquals(result?.x!!, 1f, DEFAULT_TOLERANCE)
