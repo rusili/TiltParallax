@@ -1,4 +1,4 @@
-package com.rusili.lib.parallax
+package com.rusili.lib.parallax.ui
 
 import android.content.Context
 import android.graphics.Matrix
@@ -12,6 +12,9 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
 import com.rusili.lib.R
+import com.rusili.lib.parallax.domain.Event3
+import com.rusili.lib.parallax.domain.ParallaxCalculator
+import com.rusili.lib.parallax.domain.SensorInterpreter
 
 /**
  * Adds a parallax effect to an [AppCompatImageView] based on the phone's accelerometer.

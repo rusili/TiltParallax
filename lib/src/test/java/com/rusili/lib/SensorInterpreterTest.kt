@@ -1,10 +1,8 @@
 package com.rusili.lib
 
-import com.rusili.lib.parallax.Event3
-import com.rusili.lib.parallax.SensorInterpreter
+import com.rusili.lib.parallax.domain.Event3
+import com.rusili.lib.parallax.domain.SensorInterpreter
 import org.amshove.kluent.shouldBeNull
-import org.amshove.kluent.shouldEqual
-import org.amshove.kluent.shouldNotBeNull
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

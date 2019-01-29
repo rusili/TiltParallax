@@ -1,4 +1,4 @@
-package com.rusili.lib.parallax
+package com.rusili.lib.parallax.domain
 
 import com.rusili.lib.common.isNotZero
 

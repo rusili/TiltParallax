@@ -1,4 +1,4 @@
-package com.rusili.lib.parallax
+package com.rusili.lib.parallax.ui
 
 import android.content.Context
 import android.content.res.TypedArray

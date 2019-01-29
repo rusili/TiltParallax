@@ -1,4 +1,4 @@
-package com.rusili.lib.parallax
+package com.rusili.lib.parallax.domain
 
 /**
  * Helper class that calculates [ParallaxImageView] translations

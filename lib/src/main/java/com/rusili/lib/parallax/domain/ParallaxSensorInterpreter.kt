@@ -1,4 +1,4 @@
-package com.rusili.lib.parallax
+package com.rusili.lib.parallax.domain
 
 import android.view.Surface
 
@@ -15,8 +15,10 @@ private const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
 class SensorInterpreter {
     private val vectors = Event3()
 
-    internal var horizontalTiltSensitivity = DEFAULT_HORIZONTAL_TILT_SENSITIVITY
-    internal var verticalTiltSensitivity = DEFAULT_VERTICAL_TILT_SENSITIVITY
+    internal var horizontalTiltSensitivity =
+        DEFAULT_HORIZONTAL_TILT_SENSITIVITY
+    internal var verticalTiltSensitivity =
+        DEFAULT_VERTICAL_TILT_SENSITIVITY
 
     // How vertically centered the image is while the phone is "naturally" tilted forwards.
     internal var forwardTiltOffset = DEFAULT_FORWARD_TILT_OFFSET
