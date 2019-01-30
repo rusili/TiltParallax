@@ -1,13 +1,11 @@
-package com.rusili.tiltparallax.parallax
+package com.rusili.lib.parallax.ui
 
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.rusili.tiltparallax.R
-import kotlinx.android.synthetic.main.view_gxp_parallax_layer.view.gxpParallaxBackground
-import kotlinx.android.synthetic.main.view_gxp_parallax_layer.view.gxpParallaxForeground
-import kotlinx.android.synthetic.main.view_gxp_parallax_layer.view.gxpParallaxMiddleground
+import androidx.core.content.res.use
+import com.rusili.lib.R
 
 /**
  * Stacks three [ParallaxImageView]s on top of each other to simulate a 3d parallax effect.
@@ -20,23 +18,20 @@ class ParallaxThreeLayerView @JvmOverloads constructor(
     private val parallaxViews: List<ParallaxImageView>
 
     init {
-        inflate(context, R.layout.view_gxp_parallax_layer, this)
+        inflate(context, R.layout.view_parallax_three_layer, this)
 
-        parallaxViews = listOf<ParallaxImageView>(
-            gxpParallaxBackground,
-            gxpParallaxMiddleground,
-            gxpParallaxForeground)
+        parallaxViews = listOf(
+            findViewById(R.id.parallaxBackground),
+            findViewById(R.id.parallaxMiddleground),
+            findViewById(R.id.parallaxForeground)
+        )
 
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.ParallaxThreeLayerView,
             defStyleAttr, 0
-        ).apply {
-            try {
-                setupViews()
-            } finally {
-                recycle()
-            }
+        ).use {
+            it.setupViews()
         }
     }
 

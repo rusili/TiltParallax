@@ -1,4 +1,4 @@
-package com.rusili.tiltparallax.parallax
+package com.rusili.lib.parallax.domain
 
 /**
  * Helper class that calculates [ParallaxImageView] translations
@@ -8,10 +8,17 @@ package com.rusili.tiltparallax.parallax
  */
 private const val DEFAULT_OFFSET_MULTIPLIER = 0.5f
 
-class ParallaxCalculator {
+internal class ParallaxCalculator {
+
+    internal fun getScale(
+        mainAxisOffset: Float,
+        otherAxisOffset: Float,
+        scaleIntensityPerAxis: Boolean = false
+    ): Float =
+        if (scaleIntensityPerAxis) mainAxisOffset else Math.max(mainAxisOffset, otherAxisOffset)
 
     // Make sure below maximum maxTranslationChange limit
-    fun translate(
+    internal fun translate(
         maxTranslationChange: Float,
         translation: Float,
         axis: Float,
@@ -27,22 +34,23 @@ class ParallaxCalculator {
         return axis * scale
     }
 
-    fun overallScale(
+    internal fun overallScale(
+        intensity: Float,
         drawableHeight: Float,
         drawableWidth: Float,
         viewHeight: Float,
         viewWidth: Float
     ): Float =
         when (drawableWidth * viewHeight > viewWidth * drawableHeight) {
-            true -> viewHeight / drawableHeight
-            false -> viewWidth / drawableWidth
+            true -> viewHeight / drawableHeight * intensity
+            false -> viewWidth / drawableWidth * intensity
         }
 
-    fun axisOffset(
-        intensity: Float,
+    internal fun axisOffset(
         scale: Float,
         drawableAxis: Float,
-        viewAxis: Float
+        viewAxis: Float,
+        axisTranslation: Float
     ): Float =
-        (viewAxis - drawableAxis * scale * intensity) * DEFAULT_OFFSET_MULTIPLIER
+        ((viewAxis - drawableAxis * scale) * DEFAULT_OFFSET_MULTIPLIER) + axisTranslation
 }

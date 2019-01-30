@@ -1,4 +1,4 @@
-package com.rusili.tiltparallax.parallax
+package com.rusili.lib.parallax.ui
 
 import android.content.Context
 import android.graphics.Matrix
@@ -7,13 +7,14 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.AttributeSet
+import android.view.WindowManager
 import android.widget.ImageView
-import com.rusili.tiltparallax.R
-import androidx.annotation.FloatRange
 import androidx.appcompat.widget.AppCompatImageView
-import com.rusili.tiltparallax.parallax.Float3
-import com.rusili.tiltparallax.parallax.ParallaxCalculator
-import com.rusili.tiltparallax.parallax.SensorInterpreter
+import androidx.core.content.res.use
+import com.rusili.lib.R
+import com.rusili.lib.parallax.domain.Event3
+import com.rusili.lib.parallax.domain.ParallaxCalculator
+import com.rusili.lib.parallax.domain.SensorInterpreter
 
 /**
  * Adds a parallax effect to an [AppCompatImageView] based on the phone's accelerometer.
@@ -26,6 +27,7 @@ import com.rusili.tiltparallax.parallax.SensorInterpreter
  * Taken from this stackoverflow answer:
  * https://stackoverflow.com/a/42628846
  */
+
 private const val DEFAULT_INTENSITY_MULTIPLIER = 1.0f
 private const val DEFAULT_MAXIMUM_TRANSLATION = 0.1f
 
@@ -66,49 +68,43 @@ class ParallaxImageView @JvmOverloads constructor(
     private var yOffset: Float = 0f
 
     init {
-        scaleType = AppCompatImageView.ScaleType.MATRIX
+        scaleType = ImageView.ScaleType.MATRIX
 
-        attrs?.let {
-            context.theme.obtainStyledAttributes(
-                attrs,
-                R.styleable.ParallaxImageView,
-                defStyle, 0
-            ).apply {
-                try {
-                    setParallaxIntensity(
-                        getFloat(
-                            R.styleable.ParallaxImageView_intensity,
-                            intensityMultiplier
-                        )
-                    )
-                    setScaledIntensities(
-                        getBoolean(
-                            R.styleable.ParallaxImageView_scaled_intensity,
-                            scaleIntensityPerAxis
-                        )
-                    )
-                    setHorizontalTiltSensitivity(
-                        getFloat(
-                            R.styleable.ParallaxImageView_horizontal_tilt_sensitivity,
-                            sensorInterpreter.horizontalTiltSensitivity
-                        )
-                    )
-                    setVerticalTiltSensitivity(
-                        getFloat(
-                            R.styleable.ParallaxImageView_vertical_tilt_sensitivity,
-                            sensorInterpreter.verticalTiltSensitivity
-                        )
-                    )
-                    setForwardTiltOffset(
-                        getFloat(
-                            R.styleable.ParallaxImageView_forward_tilt_offset,
-                            sensorInterpreter.forwardTiltOffset
-                        )
-                    )
-                } finally {
-                    recycle()
-                }
-            }
+        context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.ParallaxImageView,
+            defStyle, 0
+        ).use {
+            setParallaxIntensity(
+                it.getFloat(
+                    R.styleable.ParallaxImageView_intensity,
+                    intensityMultiplier
+                )
+            )
+            setScaledIntensities(
+                it.getBoolean(
+                    R.styleable.ParallaxImageView_scaled_intensity,
+                    scaleIntensityPerAxis
+                )
+            )
+            setHorizontalTiltSensitivity(
+                it.getFloat(
+                    R.styleable.ParallaxImageView_horizontal_tilt_sensitivity,
+                    sensorInterpreter.horizontalTiltSensitivity
+                )
+            )
+            setVerticalTiltSensitivity(
+                it.getFloat(
+                    R.styleable.ParallaxImageView_vertical_tilt_sensitivity,
+                    sensorInterpreter.verticalTiltSensitivity
+                )
+            )
+            setForwardTiltOffset(
+                it.getFloat(
+                    R.styleable.ParallaxImageView_forward_tilt_offset,
+                    sensorInterpreter.forwardTiltOffset
+                )
+            )
         }
 
         // Configure matrix as early as possible by posting to MessageQueue
@@ -124,10 +120,15 @@ class ParallaxImageView @JvmOverloads constructor(
     }
 
     override fun onSensorChanged(event: SensorEvent) {
-        sensorInterpreter.interpretSensorEvent(Float3(event.values))?.let { float3 ->
-            setTranslate(float3.z, float3.y)
-            configureMatrix()
-        }
+        val rotation = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager)
+            .defaultDisplay
+            .rotation
+
+        sensorInterpreter.interpretSensorEvent(Event3(event.values), rotation)
+            ?.let { float3 ->
+                setTranslate(float3.z, float3.y)
+                configureMatrix()
+            }
     }
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) = Unit
@@ -153,7 +154,7 @@ class ParallaxImageView @JvmOverloads constructor(
      */
     fun unregisterSensorManager() {
         sensorManager?.unregisterListener(this)
-        sensorManager = null
+            .also { it == null }
     }
 
     /**
@@ -161,13 +162,14 @@ class ParallaxImageView @JvmOverloads constructor(
      * the image will have to move around.
      *
      * @param parallaxIntensity the new intensity
+     * @FloatRange(from = 1.0)
      */
-    fun setParallaxIntensity(@FloatRange(from = 1.0) parallaxIntensity: Float) {
-        parallaxIntensity.takeIf(it)?.let {
-            intensityMultiplier = parallaxIntensity
-            configureMatrix()
-        }
-            ?: throw IllegalArgumentException("Parallax effect must have a intensity of 1.0 or greater")
+    fun setParallaxIntensity(parallaxIntensity: Float) {
+        parallaxIntensity.takeIf { it >= 1 }
+            ?.let {
+                intensityMultiplier = parallaxIntensity
+                configureMatrix()
+            } ?: throw IllegalArgumentException("Parallax effect must have a intensity of 1.0 or greater")
     }
 
     /**
@@ -190,8 +192,9 @@ class ParallaxImageView @JvmOverloads constructor(
      * centered while the phone is "naturally" tilted forwards.
      *
      * @param forwardTiltOffset the new tilt forward adjustment
+     * @FloatRange(from = -1.0, to = 1.0)
      */
-    fun setForwardTiltOffset(@FloatRange(from = -1.0, to = 1.0) forwardTiltOffset: Float) {
+    fun setForwardTiltOffset(forwardTiltOffset: Float) {
         sensorInterpreter.forwardTiltOffset = forwardTiltOffset
     }
 
@@ -230,8 +233,8 @@ class ParallaxImageView @JvmOverloads constructor(
             return
         }
 
-        val xScale = if (scaleIntensityPerAxis) xOffset else Math.max(xOffset, yOffset)
-        val yScale = if (scaleIntensityPerAxis) yOffset else Math.max(xOffset, yOffset)
+        val xScale = parallaxCalculator.getScale(xOffset, yOffset, scaleIntensityPerAxis)
+        val yScale = parallaxCalculator.getScale(yOffset, xOffset, scaleIntensityPerAxis)
 
         xTranslation = parallaxCalculator.translate(maxTranslationChange, xTranslation, x, xScale)
         yTranslation = parallaxCalculator.translate(maxTranslationChange, yTranslation, y, yScale)
@@ -251,14 +254,14 @@ class ParallaxImageView @JvmOverloads constructor(
         val viewHeight = height.toFloat()
         val viewWidth = width.toFloat()
 
-        val scale = parallaxCalculator.overallScale(drawableHeight, drawableWidth, viewHeight, viewWidth)
-        xOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableWidth, viewWidth)
-        yOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableHeight, viewHeight)
+        val scale = parallaxCalculator.overallScale(intensityMultiplier, drawableHeight, drawableWidth, viewHeight, viewWidth)
+        xOffset = parallaxCalculator.axisOffset(scale, drawableWidth, viewWidth, xTranslation)
+        yOffset = parallaxCalculator.axisOffset(scale, drawableHeight, viewHeight, yTranslation)
 
         translationMatrix.apply {
             set(imageMatrix)
-            setScale(intensityMultiplier * scale, intensityMultiplier * scale)
-            postTranslate(xOffset + xTranslation, yOffset + yTranslation)
+            setScale(scale, scale)
+            postTranslate(xOffset, yOffset)
         }.also {
             imageMatrix = it
         }

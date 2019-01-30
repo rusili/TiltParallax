@@ -1,10 +1,7 @@
-package com.rusili.tiltparallax.common
+package com.rusili.lib.common
 
 internal fun Float.isZero() =
     this == 0f
 
 internal fun Float.isNotZero() =
     !this.isZero()
-
-internal fun Float.greaterThan1() =
-    this >= 1

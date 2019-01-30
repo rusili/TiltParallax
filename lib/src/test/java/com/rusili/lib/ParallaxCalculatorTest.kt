@@ -1,6 +1,6 @@
-package com.rusili.tiltparallax
+package com.rusili.lib
 
-import com.rusili.tiltparallax.parallax.ParallaxCalculator
+import com.rusili.lib.parallax.domain.ParallaxCalculator
 import org.amshove.kluent.shouldEqual
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -139,7 +139,7 @@ class ParallaxCalculatorTest {
         val viewAxis = 1080f
 
         // Then
-        val result = testSubject.axisOffset(intensity, scale, drawableAxis, viewAxis)
+        val result = testSubject.axisOffset(intensity, scale, drawableAxis, viewAxis, xTranslation)
 
         // When
         assertEquals(result, 440f, DEFAULT_TOLERANCE)
