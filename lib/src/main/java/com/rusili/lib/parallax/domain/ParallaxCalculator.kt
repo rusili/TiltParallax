@@ -47,7 +47,6 @@ internal class ParallaxCalculator {
         }
 
     internal fun axisOffset(
-        intensity: Float,
         scale: Float,
         drawableAxis: Float,
         viewAxis: Float,
