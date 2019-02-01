@@ -1,6 +1,7 @@
 package com.rusili.lib.parallax.domain
 
 import android.view.Surface
+import com.rusili.lib.log.TimedLogger
 
 /**
  * Helper class that converts a phone's accelerometer events to x and y axis image translations for [ParallaxImageView]
@@ -8,15 +9,14 @@ import android.view.Surface
  * Taken from this stackoverflow answer:
  * https://stackoverflow.com/a/42628846
  */
-private const val DEFAULT_HORIZONTAL_TILT_SENSITIVITY = 1.5f
-private const val DEFAULT_VERTICAL_TILT_SENSITIVITY = 0.75f
+private const val DEFAULT_HORIZONTAL_TILT_SENSITIVITY = 1f
 private const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
 
 class SensorInterpreter {
+    private val logger = TimedLogger()
     private val vectors = Event3()
 
-    internal var horizontalTiltSensitivity = DEFAULT_HORIZONTAL_TILT_SENSITIVITY
-    internal var verticalTiltSensitivity = DEFAULT_VERTICAL_TILT_SENSITIVITY
+    internal var tiltSensitivity = DEFAULT_HORIZONTAL_TILT_SENSITIVITY
 
     // How vertically centered the image is while the phone is "naturally" tilted forwards.
     internal var forwardTiltOffset = DEFAULT_FORWARD_TILT_OFFSET
@@ -33,7 +33,7 @@ class SensorInterpreter {
                 addForwardTilt()
                 adjustTiltSensitivity()
                 lockToViewBounds()
-            }
+            }.also { logger.logEventEveryNMilliSeconds(event, it, 2000) }
 
     /**
      * Adjusts values depending on phone orientation.
@@ -64,8 +64,8 @@ class SensorInterpreter {
 
     private fun Event3.adjustTiltSensitivity() =
         apply {
-            y *= verticalTiltSensitivity
-            z *= horizontalTiltSensitivity
+            y *= tiltSensitivity
+            z *= tiltSensitivity
         }
 
     /**
@@ -74,10 +74,10 @@ class SensorInterpreter {
     private fun Event3.lockToViewBounds() =
         apply {
             when {
-                y > 1 -> y = 1f
-                y < -1 -> y = -1f
-                z > 1 -> z = 1f
-                z < -1 -> z = -1f
+                y >= 1 -> y = 1f
+                y <= -1 -> y = -1f
+                z >= 1 -> z = 1f
+                z <= -1 -> z = -1f
             }
         }
 }

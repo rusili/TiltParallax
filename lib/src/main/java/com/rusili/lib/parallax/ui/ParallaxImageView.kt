@@ -12,6 +12,7 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
 import com.rusili.lib.R
+import com.rusili.lib.log.TimedLogger
 import com.rusili.lib.parallax.domain.Event3
 import com.rusili.lib.parallax.domain.ParallaxCalculator
 import com.rusili.lib.parallax.domain.SensorInterpreter
@@ -29,13 +30,14 @@ import com.rusili.lib.parallax.domain.SensorInterpreter
  */
 
 private const val DEFAULT_INTENSITY_MULTIPLIER = 1.0f
-private const val DEFAULT_MAXIMUM_TRANSLATION = 0.1f
+private const val DEFAULT_MAXIMUM_TRANSLATION = 0.05f
 
 class ParallaxImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : AppCompatImageView(context, attrs, defStyle), SensorEventListener {
+    private val logger = TimedLogger()
     /**
      * If the x and y axis' intensities are scaled to the image's aspect ratio (true) or
      * equal to the smaller of the axis' intensities (false). If true, the image will be able to
@@ -87,16 +89,10 @@ class ParallaxImageView @JvmOverloads constructor(
                     scaleIntensityPerAxis
                 )
             )
-            setHorizontalTiltSensitivity(
+            setTiltSensitivity(
                 it.getFloat(
-                    R.styleable.ParallaxImageView_horizontal_tilt_sensitivity,
-                    sensorInterpreter.horizontalTiltSensitivity
-                )
-            )
-            setVerticalTiltSensitivity(
-                it.getFloat(
-                    R.styleable.ParallaxImageView_vertical_tilt_sensitivity,
-                    sensorInterpreter.verticalTiltSensitivity
+                    R.styleable.ParallaxImageView_tilt_sensitivity,
+                    sensorInterpreter.tiltSensitivity
                 )
             )
             setForwardTiltOffset(
@@ -179,12 +175,8 @@ class ParallaxImageView @JvmOverloads constructor(
      *
      * @param sensitivity the new tilt sensitivity
      */
-    fun setHorizontalTiltSensitivity(sensitivity: Float) {
-        sensorInterpreter.horizontalTiltSensitivity = sensitivity
-    }
-
-    fun setVerticalTiltSensitivity(sensitivity: Float) {
-        sensorInterpreter.verticalTiltSensitivity = sensitivity
+    fun setTiltSensitivity(sensitivity: Float) {
+        sensorInterpreter.tiltSensitivity = sensitivity
     }
 
     /**
@@ -236,6 +228,7 @@ class ParallaxImageView @JvmOverloads constructor(
         val xScale = parallaxCalculator.getScale(xOffset, yOffset, scaleIntensityPerAxis)
         val yScale = parallaxCalculator.getScale(yOffset, xOffset, scaleIntensityPerAxis)
 
+        logger.logTranslateEveryNMilliSeconds(xTranslation, x, xScale, yTranslation, y, yScale, 2000)
         xTranslation = parallaxCalculator.translate(maxTranslationChange, xTranslation, x, xScale)
         yTranslation = parallaxCalculator.translate(maxTranslationChange, yTranslation, y, yScale)
     }
@@ -254,14 +247,14 @@ class ParallaxImageView @JvmOverloads constructor(
         val viewHeight = height.toFloat()
         val viewWidth = width.toFloat()
 
-        val scale = parallaxCalculator.overallScale(intensityMultiplier, drawableHeight, drawableWidth, viewHeight, viewWidth)
-        xOffset = parallaxCalculator.axisOffset(scale, drawableWidth, viewWidth, xTranslation)
-        yOffset = parallaxCalculator.axisOffset(scale, drawableHeight, viewHeight, yTranslation)
+        val scale = parallaxCalculator.overallScale(drawableHeight, drawableWidth, viewHeight, viewWidth)
+        xOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableWidth, viewWidth)
+        yOffset = parallaxCalculator.axisOffset(intensityMultiplier, scale, drawableHeight, viewHeight)
 
         translationMatrix.apply {
             set(imageMatrix)
-            setScale(scale, scale)
-            postTranslate(xOffset, yOffset)
+            setScale(intensityMultiplier * scale, intensityMultiplier * scale)
+            postTranslate(xOffset + xTranslation, yOffset + yTranslation)
         }.also {
             imageMatrix = it
         }

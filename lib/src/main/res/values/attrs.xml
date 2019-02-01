@@ -12,8 +12,7 @@
 
     <declare-styleable name="ParallaxImageView">
         <attr name="intensity" format="float" />
-        <attr name="horizontal_tilt_sensitivity" format="float" />
-        <attr name="vertical_tilt_sensitivity" format="float" />
+        <attr name="tilt_sensitivity" format="float" />
         <attr name="forward_tilt_offset" format="float" />
         <attr name="scaled_intensity" format="boolean" />
     </declare-styleable>
