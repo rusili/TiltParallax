@@ -38,6 +38,7 @@ class ParallaxImageView @JvmOverloads constructor(
     defStyle: Int = 0
 ) : AppCompatImageView(context, attrs, defStyle), SensorEventListener {
     private val logger = TimedLogger()
+
     /**
      * If the x and y axis' intensities are scaled to the image's aspect ratio (true) or
      * equal to the smaller of the axis' intensities (false). If true, the image will be able to
@@ -45,7 +46,7 @@ class ParallaxImageView @JvmOverloads constructor(
      * the image will limit it's translation equally so that motion in either axis results
      * in proportional translation.
      */
-    private var scaleIntensityPerAxis = false
+    private var scaleIntensityPerAxis = true
 
     /**
      * The intensity of the parallax effect, giving the perspective of depth.
@@ -165,7 +166,8 @@ class ParallaxImageView @JvmOverloads constructor(
             ?.let {
                 intensityMultiplier = parallaxIntensity
                 configureMatrix()
-            } ?: throw IllegalArgumentException("Parallax effect must have a intensity of 1.0 or greater")
+            }
+            ?: throw IllegalArgumentException("Parallax effect must have a intensity of 1.0 or greater")
     }
 
     /**
@@ -228,7 +230,6 @@ class ParallaxImageView @JvmOverloads constructor(
         val xScale = parallaxCalculator.getScale(xOffset, yOffset, scaleIntensityPerAxis)
         val yScale = parallaxCalculator.getScale(yOffset, xOffset, scaleIntensityPerAxis)
 
-        logger.logTranslateEveryNMilliSeconds(xTranslation, x, xScale, yTranslation, y, yScale, 2000)
         xTranslation = parallaxCalculator.translate(maxTranslationChange, xTranslation, x, xScale)
         yTranslation = parallaxCalculator.translate(maxTranslationChange, yTranslation, y, yScale)
     }

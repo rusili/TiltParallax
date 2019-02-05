@@ -11,10 +11,13 @@ import com.rusili.lib.log.TimedLogger
  */
 private const val DEFAULT_HORIZONTAL_TILT_SENSITIVITY = 1f
 private const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
+private const val MAX_CHANGE = 0.5f
 
 class SensorInterpreter {
     private val logger = TimedLogger()
     private val vectors = Event3()
+    private var lastY = 0f
+    private var lastZ = 0f
 
     internal var tiltSensitivity = DEFAULT_HORIZONTAL_TILT_SENSITIVITY
 
@@ -33,6 +36,7 @@ class SensorInterpreter {
                 addForwardTilt()
                 adjustTiltSensitivity()
                 lockToViewBounds()
+                checkAgainstFlip()
             }.also { logger.logEventEveryNMilliSeconds(event, it, 2000) }
 
     /**
@@ -79,5 +83,25 @@ class SensorInterpreter {
                 z >= 1 -> z = 1f
                 z <= -1 -> z = -1f
             }
+        }
+
+    /**
+     * Flipping the phone over (rotate past 90 degree causes the sensors to jump.
+     * This locks the view at max translation change when rotating past 90 degrees.
+     */
+    private fun Event3.checkAgainstFlip(): Event3? =
+        apply {
+            if (lastY != 0f) {
+                if (y - lastY > MAX_CHANGE) {
+                    return null
+                }
+            }
+            if (lastZ != 0f) {
+                if (z - lastZ > MAX_CHANGE) {
+                    return null
+                }
+            }
+            lastY = y
+            lastZ = z
         }
 }
