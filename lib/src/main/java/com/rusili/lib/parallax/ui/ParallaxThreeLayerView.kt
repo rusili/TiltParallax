@@ -5,6 +5,7 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.content.res.use
+import androidx.core.content.withStyledAttributes
 import com.rusili.lib.R
 
 /**
@@ -26,12 +27,12 @@ class ParallaxThreeLayerView @JvmOverloads constructor(
             findViewById(R.id.parallaxForeground)
         )
 
-        context.theme.obtainStyledAttributes(
+        context.withStyledAttributes(
             attrs,
             R.styleable.ParallaxThreeLayerView,
             defStyleAttr, 0
-        ).use {
-            it.setupViews()
+        ) {
+            setupViews()
         }
     }
 

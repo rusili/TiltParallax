@@ -11,8 +11,8 @@ import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.use
+import androidx.core.content.withStyledAttributes
 import com.rusili.lib.R
-import com.rusili.lib.log.TimedLogger
 import com.rusili.lib.parallax.domain.Event3
 import com.rusili.lib.parallax.domain.ParallaxCalculator
 import com.rusili.lib.parallax.domain.SensorInterpreter
@@ -37,7 +37,6 @@ class ParallaxImageView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : AppCompatImageView(context, attrs, defStyle), SensorEventListener {
-    private val logger = TimedLogger()
     private var lastY = 0f
 
     /**
@@ -74,31 +73,31 @@ class ParallaxImageView @JvmOverloads constructor(
     init {
         scaleType = ImageView.ScaleType.MATRIX
 
-        context.theme.obtainStyledAttributes(
+        context.withStyledAttributes(
             attrs,
             R.styleable.ParallaxImageView,
             defStyle, 0
-        ).use {
+        ) {
             setParallaxIntensity(
-                it.getFloat(
+                getFloat(
                     R.styleable.ParallaxImageView_intensity,
                     intensityMultiplier
                 )
             )
             setScaledIntensities(
-                it.getBoolean(
+                getBoolean(
                     R.styleable.ParallaxImageView_scaled_intensity,
                     scaleIntensityPerAxis
                 )
             )
             setTiltSensitivity(
-                it.getFloat(
+                getFloat(
                     R.styleable.ParallaxImageView_tilt_sensitivity,
                     sensorInterpreter.tiltSensitivity
                 )
             )
             setForwardTiltOffset(
-                it.getFloat(
+                getFloat(
                     R.styleable.ParallaxImageView_forward_tilt_offset,
                     sensorInterpreter.forwardTiltOffset
                 )
@@ -123,18 +122,25 @@ class ParallaxImageView @JvmOverloads constructor(
             .rotation
 
         sensorInterpreter.interpretSensorEvent(Event3(event.values), rotation)
-            .also {
-                if (lastY != 0f) {
-                    if (it!!.y - lastY > 0.5){
-                        return
-                    }
-                }
-                lastY = it!!.y
-            }
+            ?.also { if (checkAgainstFlip(it)) return }
             ?.let { float3 ->
                 setTranslate(float3.z, float3.y)
                 configureMatrix()
             }
+    }
+
+    /**
+     * Flipping the phone over (rotate past 90 degree causes the sensors to jump.
+     * This locks the view at max translation change when rotating past 90 degrees.
+     */
+    private fun checkAgainstFlip(it: Event3): Boolean {
+        if (lastY != 0f) {
+            if (it.y - lastY > 0.5) {
+                return true
+            }
+        }
+        lastY = it.y
+        return false
     }
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) = Unit

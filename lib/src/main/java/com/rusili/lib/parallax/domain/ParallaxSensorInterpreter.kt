@@ -1,7 +1,6 @@
 package com.rusili.lib.parallax.domain
 
 import android.view.Surface
-import com.rusili.lib.log.TimedLogger
 
 /**
  * Helper class that converts a phone's accelerometer events to x and y axis image translations for [ParallaxImageView]
@@ -11,14 +10,8 @@ import com.rusili.lib.log.TimedLogger
  */
 private const val DEFAULT_HORIZONTAL_TILT_SENSITIVITY = 1f
 private const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
-private const val MAX_CHANGE = 0.5f
 
 class SensorInterpreter {
-    private val logger = TimedLogger()
-    private val vectors = Event3()
-    private var lastY = 0f
-    private var lastZ = 0f
-
     internal var tiltSensitivity = DEFAULT_HORIZONTAL_TILT_SENSITIVITY
 
     // How vertically centered the image is while the phone is "naturally" tilted forwards.
@@ -28,7 +21,7 @@ class SensorInterpreter {
         event: Event3,
         rotation: Int
     ): Event3? =
-        vectors.takeIf { event.isValidEvent() }
+        Event3().takeIf { event.isValidEvent() }
             ?.copy(event.x, event.y, event.z)
             ?.apply {
                 applyRotation(rotation)
@@ -36,8 +29,7 @@ class SensorInterpreter {
                 addForwardTilt()
                 adjustTiltSensitivity()
                 lockToViewBounds()
-                checkAgainstFlip()
-            }.also { logger.logEventEveryNMilliSeconds(event, it, 2000) }
+            }
 
     /**
      * Adjusts values depending on phone orientation.
@@ -83,25 +75,5 @@ class SensorInterpreter {
                 z >= 1 -> z = 1f
                 z <= -1 -> z = -1f
             }
-        }
-
-    /**
-     * Flipping the phone over (rotate past 90 degree causes the sensors to jump.
-     * This locks the view at max translation change when rotating past 90 degrees.
-     */
-    private fun Event3.checkAgainstFlip(): Event3? =
-        apply {
-            if (lastY != 0f) {
-                if (y - lastY > MAX_CHANGE) {
-                    return null
-                }
-            }
-            if (lastZ != 0f) {
-                if (z - lastZ > MAX_CHANGE) {
-                    return null
-                }
-            }
-            lastY = y
-            lastZ = z
         }
 }
