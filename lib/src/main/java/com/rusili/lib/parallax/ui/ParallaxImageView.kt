@@ -122,25 +122,10 @@ class ParallaxImageView @JvmOverloads constructor(
             .rotation
 
         sensorInterpreter.interpretSensorEvent(Event3(event.values), rotation)
-            ?.also { if (checkAgainstFlip(it)) return }
             ?.let { float3 ->
                 setTranslate(float3.z, float3.y)
                 configureMatrix()
             }
-    }
-
-    /**
-     * Flipping the phone over (rotate past 90 degree causes the sensors to jump.
-     * This locks the view at max translation change when rotating past 90 degrees.
-     */
-    private fun checkAgainstFlip(it: Event3): Boolean {
-        if (lastY != 0f) {
-            if (it.y - lastY > 0.5) {
-                return true
-            }
-        }
-        lastY = it.y
-        return false
     }
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) = Unit

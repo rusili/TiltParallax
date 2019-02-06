@@ -8,7 +8,7 @@ import android.view.Surface
  * Taken from this stackoverflow answer:
  * https://stackoverflow.com/a/42628846
  */
-private const val DEFAULT_HORIZONTAL_TILT_SENSITIVITY = 1f
+private const val DEFAULT_HORIZONTAL_TILT_SENSITIVITY = 2f
 private const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
 
 class SensorInterpreter {
