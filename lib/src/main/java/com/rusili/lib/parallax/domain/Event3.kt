@@ -19,6 +19,6 @@ data class Event3(
         z = newZ
     }
 
-    internal fun isValidEvent() =
+    internal fun isValid() =
         x.isNotZero() && y.isNotZero() && z.isNotZero()
 }

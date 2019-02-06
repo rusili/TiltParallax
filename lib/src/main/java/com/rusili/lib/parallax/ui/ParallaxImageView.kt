@@ -10,7 +10,6 @@ import android.util.AttributeSet
 import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.core.content.res.use
 import androidx.core.content.withStyledAttributes
 import com.rusili.lib.R
 import com.rusili.lib.parallax.domain.Event3
@@ -29,7 +28,7 @@ import com.rusili.lib.parallax.domain.SensorInterpreter
  * https://stackoverflow.com/a/42628846
  */
 
-private const val DEFAULT_INTENSITY_MULTIPLIER = 1.0f
+internal const val DEFAULT_INTENSITY_MULTIPLIER = 1.0f
 private const val DEFAULT_MAXIMUM_TRANSLATION = 0.05f
 
 class ParallaxImageView @JvmOverloads constructor(
@@ -37,8 +36,6 @@ class ParallaxImageView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : AppCompatImageView(context, attrs, defStyle), SensorEventListener {
-    private var lastY = 0f
-
     /**
      * If the x and y axis' intensities are scaled to the image's aspect ratio (true) or
      * equal to the smaller of the axis' intensities (false). If true, the image will be able to
@@ -84,7 +81,7 @@ class ParallaxImageView @JvmOverloads constructor(
                     intensityMultiplier
                 )
             )
-            setScaledIntensities(
+            setScaleIntensityPerAxis(
                 getBoolean(
                     R.styleable.ParallaxImageView_scaled_intensity,
                     scaleIntensityPerAxis
@@ -116,14 +113,14 @@ class ParallaxImageView @JvmOverloads constructor(
         configureMatrix()
     }
 
-    override fun onSensorChanged(event: SensorEvent) {
+    override fun onSensorChanged(sensorEvent: SensorEvent) {
         val rotation = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager)
             .defaultDisplay
             .rotation
 
-        sensorInterpreter.interpretSensorEvent(Event3(event.values), rotation)
-            ?.let { float3 ->
-                setTranslate(float3.z, float3.y)
+        sensorInterpreter.interpretSensorEvent(Event3(sensorEvent.values), rotation)
+            ?.let { event ->
+                setTranslate(event.z, event.y)
                 configureMatrix()
             }
     }
@@ -185,11 +182,11 @@ class ParallaxImageView @JvmOverloads constructor(
      * Sets the forward tilt offset dimension, allowing for the image to be
      * centered while the phone is "naturally" tilted forwards.
      *
-     * @param forwardTiltOffset the new tilt forward adjustment
+     * @param offset the new tilt forward adjustment
      * @FloatRange(from = -1.0, to = 1.0)
      */
-    fun setForwardTiltOffset(forwardTiltOffset: Float) {
-        sensorInterpreter.forwardTiltOffset = forwardTiltOffset
+    fun setForwardTiltOffset(offset: Float) {
+        sensorInterpreter.forwardTiltOffset = offset
     }
 
     /**
@@ -198,7 +195,7 @@ class ParallaxImageView @JvmOverloads constructor(
      *
      * @param scalePerAxis the scalePerAxis flag
      */
-    fun setScaledIntensities(scalePerAxis: Boolean) {
+    fun setScaleIntensityPerAxis(scalePerAxis: Boolean) {
         scaleIntensityPerAxis = scalePerAxis
     }
 
@@ -206,10 +203,10 @@ class ParallaxImageView @JvmOverloads constructor(
      * Sets the maximum percentage of the image that image matrix is allowed to translate
      * for each sensor reading.
      *
-     * @param maxChange the new maximum jump
+     * @param change the new maximum jump
      */
-    fun setMaximumJump(maxChange: Float) {
-        maxTranslationChange = maxChange
+    fun setMaximumChange(change: Float) {
+        maxTranslationChange = change
     }
 
     /**

@@ -8,11 +8,11 @@ import android.view.Surface
  * Taken from this stackoverflow answer:
  * https://stackoverflow.com/a/42628846
  */
-private const val DEFAULT_HORIZONTAL_TILT_SENSITIVITY = 2f
-private const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
+internal const val DEFAULT_TILT_SENSITIVITY = 2f
+internal const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
 
 class SensorInterpreter {
-    internal var tiltSensitivity = DEFAULT_HORIZONTAL_TILT_SENSITIVITY
+    internal var tiltSensitivity = DEFAULT_TILT_SENSITIVITY
 
     // How vertically centered the image is while the phone is "naturally" tilted forwards.
     internal var forwardTiltOffset = DEFAULT_FORWARD_TILT_OFFSET
@@ -21,7 +21,7 @@ class SensorInterpreter {
         event: Event3,
         rotation: Int
     ): Event3? =
-        Event3().takeIf { event.isValidEvent() }
+        Event3().takeIf { event.isValid() }
             ?.copy(event.x, event.y, event.z)
             ?.apply {
                 applyRotation(rotation)
