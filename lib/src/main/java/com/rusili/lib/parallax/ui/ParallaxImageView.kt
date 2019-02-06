@@ -38,6 +38,7 @@ class ParallaxImageView @JvmOverloads constructor(
     defStyle: Int = 0
 ) : AppCompatImageView(context, attrs, defStyle), SensorEventListener {
     private val logger = TimedLogger()
+    private var lastY = 0f
 
     /**
      * If the x and y axis' intensities are scaled to the image's aspect ratio (true) or
@@ -122,6 +123,14 @@ class ParallaxImageView @JvmOverloads constructor(
             .rotation
 
         sensorInterpreter.interpretSensorEvent(Event3(event.values), rotation)
+            .also {
+                if (lastY != 0f) {
+                    if (it!!.y - lastY > 0.5){
+                        return
+                    }
+                }
+                lastY = it!!.y
+            }
             ?.let { float3 ->
                 setTranslate(float3.z, float3.y)
                 configureMatrix()
