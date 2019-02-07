@@ -12,6 +12,8 @@ import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.withStyledAttributes
 import com.rusili.lib.R
+import com.rusili.lib.parallax.domain.DEFAULT_FORWARD_TILT_OFFSET
+import com.rusili.lib.parallax.domain.DEFAULT_TILT_SENSITIVITY
 import com.rusili.lib.parallax.domain.Event3
 import com.rusili.lib.parallax.domain.ParallaxCalculator
 import com.rusili.lib.parallax.domain.SensorInterpreter
@@ -29,7 +31,7 @@ import com.rusili.lib.parallax.domain.SensorInterpreter
  */
 
 internal const val DEFAULT_INTENSITY_MULTIPLIER = 1.25f
-private const val DEFAULT_MAXIMUM_TRANSLATION = 0.05f
+internal const val DEFAULT_MAXIMUM_TRANSLATION = 0.05f
 
 class ParallaxImageView @JvmOverloads constructor(
     context: Context,
@@ -78,25 +80,31 @@ class ParallaxImageView @JvmOverloads constructor(
             setParallaxIntensity(
                 getFloat(
                     R.styleable.ParallaxImageView_parallax_intensity,
-                    intensityMultiplier
+                    DEFAULT_INTENSITY_MULTIPLIER
                 )
             )
             setScaleIntensityPerAxis(
                 getBoolean(
                     R.styleable.ParallaxImageView_scaled_intensity,
-                    scaleIntensityPerAxis
+                    true
+                )
+            )
+            setMaximumChange(
+                getFloat(
+                    R.styleable.ParallaxImageView_max_translation,
+                    DEFAULT_MAXIMUM_TRANSLATION
                 )
             )
             setTiltSensitivity(
                 getFloat(
                     R.styleable.ParallaxImageView_tilt_sensitivity,
-                    sensorInterpreter.tiltSensitivity
+                    DEFAULT_TILT_SENSITIVITY
                 )
             )
             setForwardTiltOffset(
                 getFloat(
                     R.styleable.ParallaxImageView_forward_tilt_offset,
-                    sensorInterpreter.forwardTiltOffset
+                    DEFAULT_FORWARD_TILT_OFFSET
                 )
             )
         }

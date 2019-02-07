@@ -60,6 +60,7 @@ class ParallaxThreeLayerView @JvmOverloads constructor(
             setParallaxIntensity(getFloat(R.styleable.ParallaxThreeLayerView_parallax_intensity_background, DEFAULT_INTENSITY_MULTIPLIER))
             setTiltSensitivity(getFloat(R.styleable.ParallaxThreeLayerView_tilt_sensitivity_background, DEFAULT_TILT_SENSITIVITY))
             setForwardTiltOffset(getFloat(R.styleable.ParallaxThreeLayerView_forward_tilt_offset_background, DEFAULT_FORWARD_TILT_OFFSET))
+            setMaximumChange(getFloat(R.styleable.ParallaxThreeLayerView_max_translation_background, DEFAULT_MAXIMUM_TRANSLATION))
             setScaleIntensityPerAxis(getBoolean(R.styleable.ParallaxThreeLayerView_scaled_intensity_background, true))
         }
         parallaxViews[1].apply {
@@ -67,6 +68,7 @@ class ParallaxThreeLayerView @JvmOverloads constructor(
             setParallaxIntensity(getFloat(R.styleable.ParallaxThreeLayerView_parallax_intensity_middleground, DEFAULT_INTENSITY_MULTIPLIER))
             setTiltSensitivity(getFloat(R.styleable.ParallaxThreeLayerView_tilt_sensitivity_middleground, DEFAULT_TILT_SENSITIVITY))
             setForwardTiltOffset(getFloat(R.styleable.ParallaxThreeLayerView_forward_tilt_offset_middleground, DEFAULT_FORWARD_TILT_OFFSET))
+            setMaximumChange(getFloat(R.styleable.ParallaxThreeLayerView_max_translation_middleground, DEFAULT_MAXIMUM_TRANSLATION))
             setScaleIntensityPerAxis(getBoolean(R.styleable.ParallaxThreeLayerView_scaled_intensity_middleground, true))
         }
         parallaxViews[2].apply {
@@ -74,6 +76,7 @@ class ParallaxThreeLayerView @JvmOverloads constructor(
             setParallaxIntensity(getFloat(R.styleable.ParallaxThreeLayerView_parallax_intensity_foreground, DEFAULT_INTENSITY_MULTIPLIER))
             setTiltSensitivity(getFloat(R.styleable.ParallaxThreeLayerView_tilt_sensitivity_foreground, DEFAULT_TILT_SENSITIVITY))
             setForwardTiltOffset(getFloat(R.styleable.ParallaxThreeLayerView_forward_tilt_offset_foreground, DEFAULT_FORWARD_TILT_OFFSET))
+            setMaximumChange(getFloat(R.styleable.ParallaxThreeLayerView_max_translation_foreground, DEFAULT_MAXIMUM_TRANSLATION))
             setScaleIntensityPerAxis(getBoolean(R.styleable.ParallaxThreeLayerView_scaled_intensity_foreground, true))
         }
     }
