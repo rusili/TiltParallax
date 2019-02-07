@@ -37,6 +37,15 @@ class ParallaxThreeLayerView @JvmOverloads constructor(
         }
     }
 
+    fun getBackgroundLayer() =
+        parallaxViews[0]
+
+    fun getMiddlegroundLayer() =
+        parallaxViews[1]
+
+    fun getForegroundgroundLayer() =
+        parallaxViews[2]
+
     fun registerSensors() {
         parallaxViews.forEach(ParallaxImageView::registerSensorManager)
     }

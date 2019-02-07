@@ -152,8 +152,8 @@ class ParallaxImageView @JvmOverloads constructor(
     }
 
     /**
-     * Sets the intensity of the parallax effect. The stronger the effect, the more distance
-     * the image will have to move around.
+     * Sets the intensity of the parallax effect. The stronger the effect, the more "zoomed in"
+     * the image will be, giving it more space to scroll.
      *
      * @param parallaxIntensity the new intensity
      * @FloatRange(from = 1.0)
@@ -169,8 +169,8 @@ class ParallaxImageView @JvmOverloads constructor(
 
     /**
      * Sets the parallax tilt sensitivity for the image view. The stronger the sensitivity,
-     * the more a given tilt will adjust the image and the smaller needed tilt to reach the
-     * image bounds.
+     * the more a given tilt will scroll the image. Lesser sensitivities decreases the amount
+     * of scrolling for any given tilt.
      *
      * @param sensitivity the new tilt sensitivity
      */
@@ -181,6 +181,7 @@ class ParallaxImageView @JvmOverloads constructor(
     /**
      * Sets the forward tilt offset dimension, allowing for the image to be
      * centered while the phone is "naturally" tilted forwards.
+     * Higher values sets the natural "center" higher up on the image.
      *
      * @param offset the new tilt forward adjustment
      * @FloatRange(from = -1.0, to = 1.0)
@@ -200,7 +201,7 @@ class ParallaxImageView @JvmOverloads constructor(
     }
 
     /**
-     * Sets the maximum percentage of the image that image matrix is allowed to translate
+     * Sets the maximum percentage of the image that image matrix is allowed to scroll
      * for each sensor reading.
      *
      * @param change the new maximum jump
@@ -211,7 +212,7 @@ class ParallaxImageView @JvmOverloads constructor(
 
     /**
      * Sets the image view's translation coordinates. These values must be between -1 and 1,
-     * representing the transaction percentage from the center.
+     * representing the amount of translation from the center.
      *
      * @param x the horizontal translation
      * @param y the vertical translation
@@ -232,8 +233,7 @@ class ParallaxImageView @JvmOverloads constructor(
     }
 
     /**
-     * Configures the ImageView's imageMatrix to allow for movement of the
-     * source image.
+     * Configures the ImageView's imageMatrix with the updated values
      */
     private fun configureMatrix() {
         if (drawable == null || width == 0 || height == 0) {

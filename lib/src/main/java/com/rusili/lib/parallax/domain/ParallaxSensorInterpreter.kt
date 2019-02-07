@@ -3,7 +3,7 @@ package com.rusili.lib.parallax.domain
 import android.view.Surface
 
 /**
- * Helper class that converts a phone's accelerometer events to x and y axis image translations for [ParallaxImageView]
+ * Helper class that converts a phone's accelerometer events to x and y axis translations for [ParallaxImageView]
  *
  * Taken from this stackoverflow answer:
  * https://stackoverflow.com/a/42628846
@@ -65,7 +65,7 @@ class SensorInterpreter {
         }
 
     /**
-     * Don't allow the image to pan past the bounds of the image.
+     * Don't allow the image to scroll past the bounds of the image.
      */
     private fun Event3.lockToViewBounds() =
         apply {
