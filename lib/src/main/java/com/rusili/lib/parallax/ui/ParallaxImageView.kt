@@ -28,7 +28,7 @@ import com.rusili.lib.parallax.domain.SensorInterpreter
  * https://stackoverflow.com/a/42628846
  */
 
-internal const val DEFAULT_INTENSITY_MULTIPLIER = 1.0f
+internal const val DEFAULT_INTENSITY_MULTIPLIER = 1.25f
 private const val DEFAULT_MAXIMUM_TRANSLATION = 0.05f
 
 class ParallaxImageView @JvmOverloads constructor(
@@ -77,7 +77,7 @@ class ParallaxImageView @JvmOverloads constructor(
         ) {
             setParallaxIntensity(
                 getFloat(
-                    R.styleable.ParallaxImageView_intensity,
+                    R.styleable.ParallaxImageView_parallax_intensity,
                     intensityMultiplier
                 )
             )
@@ -158,7 +158,7 @@ class ParallaxImageView @JvmOverloads constructor(
      * @param parallaxIntensity the new intensity
      * @FloatRange(from = 1.0)
      */
-    fun setParallaxIntensity(parallaxIntensity: Float) {
+    infix fun setParallaxIntensity(parallaxIntensity: Float) {
         parallaxIntensity.takeIf { it >= 1 }
             ?.let {
                 intensityMultiplier = parallaxIntensity
@@ -174,7 +174,7 @@ class ParallaxImageView @JvmOverloads constructor(
      *
      * @param sensitivity the new tilt sensitivity
      */
-    fun setTiltSensitivity(sensitivity: Float) {
+    infix fun setTiltSensitivity(sensitivity: Float) {
         sensorInterpreter.tiltSensitivity = sensitivity
     }
 
@@ -186,7 +186,7 @@ class ParallaxImageView @JvmOverloads constructor(
      * @param offset the new tilt forward adjustment
      * @FloatRange(from = -1.0, to = 1.0)
      */
-    fun setForwardTiltOffset(offset: Float) {
+    infix fun setForwardTiltOffset(offset: Float) {
         sensorInterpreter.forwardTiltOffset = offset
     }
 
@@ -196,7 +196,7 @@ class ParallaxImageView @JvmOverloads constructor(
      *
      * @param scalePerAxis the scalePerAxis flag
      */
-    fun setScaleIntensityPerAxis(scalePerAxis: Boolean) {
+    infix fun setScaleIntensityPerAxis(scalePerAxis: Boolean) {
         scaleIntensityPerAxis = scalePerAxis
     }
 
@@ -206,7 +206,7 @@ class ParallaxImageView @JvmOverloads constructor(
      *
      * @param change the new maximum jump
      */
-    fun setMaximumChange(change: Float) {
+    infix fun setMaximumChange(change: Float) {
         maxTranslationChange = change
     }
 

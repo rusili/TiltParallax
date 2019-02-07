@@ -3,26 +3,26 @@
 
     <declare-styleable name="ParallaxThreeLayerView">
         <attr name="image_background" format="reference" />
-        <attr name="intensity_background" format="float" />
+        <attr name="parallax_intensity_background" format="float" />
         <attr name="tilt_sensitivity_background" format="float" />
         <attr name="forward_tilt_offset_background" format="float" />
         <attr name="scaled_intensity_background" format="boolean" />
 
         <attr name="image_middleground" format="reference" />
-        <attr name="intensity_middleground" format="float" />
+        <attr name="parallax_intensity_middleground" format="float" />
         <attr name="tilt_sensitivity_middleground" format="float" />
         <attr name="forward_tilt_offset_middleground" format="float" />
         <attr name="scaled_intensity_middleground" format="boolean" />
 
         <attr name="image_foreground" format="reference" />
-        <attr name="intensity_foreground" format="float" />
+        <attr name="parallax_intensity_foreground" format="float" />
         <attr name="tilt_sensitivity_foreground" format="float" />
         <attr name="forward_tilt_offset_foreground" format="float" />
         <attr name="scaled_intensity_foreground" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ParallaxImageView">
-        <attr name="intensity" format="float" />
+        <attr name="parallax_intensity" format="float" />
         <attr name="tilt_sensitivity" format="float" />
         <attr name="forward_tilt_offset" format="float" />
         <attr name="scaled_intensity" format="boolean" />

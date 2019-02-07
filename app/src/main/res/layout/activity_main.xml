@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.rusili.lib.parallax.ui.ParallaxThreeLayerView
-        android:id="@+id/sampleParallax"
-        android:layout_width="0dp"
+        android:id="@+id/sample3dParallaxView"
+        android:layout_width="match_parent"
         android:layout_height="256dp"
-        app:image_background="@drawable/sample_parallax_background"
-        app:image_foreground="@drawable/sample_parallax_foreground"
-        app:image_middleground="@drawable/sample_parallax_middleground"
-        app:intensity_background="1.5"
-        app:intensity_foreground="1.5"
-        app:intensity_middleground="1.5"
+        app:image_background="@drawable/sample_3dparallax_background"
+        app:image_foreground="@drawable/sample_3dparallax_foreground"
+        app:image_middleground="@drawable/sample_3dparallax_middleground"
         app:tilt_sensitivity_background="1.7"
-        app:tilt_sensitivity_foreground="1.20"
-        app:tilt_sensitivity_middleground="1.45"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:tilt_sensitivity_foreground="1.2"
+        app:tilt_sensitivity_middleground="1.45" />
 
     <com.rusili.lib.parallax.ui.ParallaxImageView
-        android:id="@+id/oneParallax"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        app:intensity="2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sampleParallax" />
+        android:id="@+id/sampleSingleParallaxView"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:src="@drawable/sample_singleparallax_image"
+        app:forward_tilt_offset="0.1"
+        app:parallax_intensity="1.5"
+        app:tilt_sensitivity="1.25" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
