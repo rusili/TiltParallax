@@ -1,9 +1,8 @@
 package com.rusili.lib
 
 import com.rusili.lib.parallax.domain.ParallaxCalculator
-import org.amshove.kluent.shouldEqual
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 private const val DEFAULT_TOLERANCE = 0.000001f
 

@@ -26,8 +26,8 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'androidx.core:core-ktx:1.1.0-alpha04'
-    testImplementation 'junit:junit:4.12'
 
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-    testImplementation 'org.amshove.kluent:kluent-android:1.47'
+    // JUnit 5L:
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.2'
 }
