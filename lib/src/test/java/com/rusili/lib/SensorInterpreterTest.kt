@@ -2,9 +2,9 @@ package com.rusili.lib
 
 import com.rusili.lib.parallax.domain.Event3
 import com.rusili.lib.parallax.domain.SensorInterpreter
-import org.amshove.kluent.shouldBeNull
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
+import org.junit.jupiter.api.Test
 
 private const val DEFAULT_TOLERANCE = 0.000001f
 
@@ -20,7 +20,7 @@ class SensorInterpreterTest {
         val result = testSubject.interpretSensorEvent(eventArray, 0)
 
         // Then
-        result.shouldBeNull()
+        assertNull(result)
     }
 
     @Test
@@ -33,7 +33,7 @@ class SensorInterpreterTest {
 
         // Then
         assertEquals(result?.x!!, 1f, DEFAULT_TOLERANCE)
-        assertEquals(result.y, -0.24166667f, DEFAULT_TOLERANCE)
-        assertEquals(result.z, -0.05f, DEFAULT_TOLERANCE)
+        assertEquals(result.y, -0.64444447f, DEFAULT_TOLERANCE)
+        assertEquals(result.z, -0.06666667f, DEFAULT_TOLERANCE)
     }
 }

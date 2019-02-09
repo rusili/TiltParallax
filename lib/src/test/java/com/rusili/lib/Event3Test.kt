@@ -1,10 +1,10 @@
 package com.rusili.lib
 
 import com.rusili.lib.parallax.domain.Event3
-import org.amshove.kluent.shouldBeFalse
-import org.amshove.kluent.shouldBeTrue
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 
 class Event3Test {
 
@@ -17,7 +17,7 @@ class Event3Test {
         val result = testSubject.isValid()
 
         // Then
-        result.shouldBeTrue()
+        assertTrue(result)
     }
 
     @Test
@@ -29,7 +29,7 @@ class Event3Test {
         val result = testSubject.isValid()
 
         // Then
-        result.shouldBeFalse()
+        assertFalse(result)
     }
 
     @Test
