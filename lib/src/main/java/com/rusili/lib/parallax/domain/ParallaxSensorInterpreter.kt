@@ -3,20 +3,16 @@ package com.rusili.lib.parallax.domain
 import android.view.Surface
 
 /**
- * Helper class that converts a phone's accelerometer events to x and y axis image translations for [ParallaxImageView]
+ * Helper class that converts a phone's accelerometer events to x and y axis translations for [ParallaxImageView]
  *
  * Taken from this stackoverflow answer:
  * https://stackoverflow.com/a/42628846
  */
-private const val DEFAULT_HORIZONTAL_TILT_SENSITIVITY = 1.5f
-private const val DEFAULT_VERTICAL_TILT_SENSITIVITY = 0.75f
-private const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
+internal const val DEFAULT_TILT_SENSITIVITY = 2f
+internal const val DEFAULT_FORWARD_TILT_OFFSET = 0.3f
 
 class SensorInterpreter {
-    private val vectors = Event3()
-
-    internal var horizontalTiltSensitivity = DEFAULT_HORIZONTAL_TILT_SENSITIVITY
-    internal var verticalTiltSensitivity = DEFAULT_VERTICAL_TILT_SENSITIVITY
+    internal var tiltSensitivity = DEFAULT_TILT_SENSITIVITY
 
     // How vertically centered the image is while the phone is "naturally" tilted forwards.
     internal var forwardTiltOffset = DEFAULT_FORWARD_TILT_OFFSET
@@ -25,7 +21,7 @@ class SensorInterpreter {
         event: Event3,
         rotation: Int
     ): Event3? =
-        vectors.takeIf { event.isValidEvent() }
+        Event3().takeIf { event.isValid() }
             ?.copy(event.x, event.y, event.z)
             ?.apply {
                 applyRotation(rotation)
@@ -64,20 +60,20 @@ class SensorInterpreter {
 
     private fun Event3.adjustTiltSensitivity() =
         apply {
-            y *= verticalTiltSensitivity
-            z *= horizontalTiltSensitivity
+            y *= tiltSensitivity
+            z *= tiltSensitivity
         }
 
     /**
-     * Don't allow the image to pan past the bounds of the image.
+     * Don't allow the image to scroll past the bounds of the image.
      */
     private fun Event3.lockToViewBounds() =
         apply {
             when {
-                y > 1 -> y = 1f
-                y < -1 -> y = -1f
-                z > 1 -> z = 1f
-                z < -1 -> z = -1f
+                y >= 1 -> y = 1f
+                y <= -1 -> y = -1f
+                z >= 1 -> z = 1f
+                z <= -1 -> z = -1f
             }
         }
 }

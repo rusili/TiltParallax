@@ -1,7 +1,5 @@
 package com.rusili.lib.parallax.domain
 
-import com.rusili.lib.common.isNotZero
-
 data class Event3(
     var x: Float = 0.0f,
     var y: Float = 0.0f,
@@ -19,6 +17,6 @@ data class Event3(
         z = newZ
     }
 
-    internal fun isValidEvent() =
-        x.isNotZero() && y.isNotZero() && z.isNotZero()
+    internal fun isValid() =
+        x != 0f && y != 0f && z != 0f
 }

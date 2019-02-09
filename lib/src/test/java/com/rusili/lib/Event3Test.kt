@@ -14,7 +14,7 @@ class Event3Test {
         val testSubject = Event3(1f, 1f, 1f)
 
         // When
-        val result = testSubject.isValidEvent()
+        val result = testSubject.isValid()
 
         // Then
         result.shouldBeTrue()
@@ -26,7 +26,7 @@ class Event3Test {
         val testSubject = Event3(0f, 1f, 1f)
 
         // When
-        val result = testSubject.isValidEvent()
+        val result = testSubject.isValid()
 
         // Then
         result.shouldBeFalse()
