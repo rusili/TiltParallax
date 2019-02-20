@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="ParallaxThreeLayerView">
+    <declare-styleable name="TripleParallaxView">
         <attr name="image_background" format="reference" />
         <attr name="parallax_intensity_background" format="float" />
         <attr name="tilt_sensitivity_background" format="float" />
@@ -24,7 +24,23 @@
         <attr name="scaled_intensity_foreground" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="ParallaxImageView">
+    <declare-styleable name="DoubleParallaxView">
+        <attr name="image_background" />
+        <attr name="parallax_intensity_background" />
+        <attr name="tilt_sensitivity_background" />
+        <attr name="forward_tilt_offset_background" />
+        <attr name="max_translation_background" />
+        <attr name="scaled_intensity_background" />
+
+        <attr name="image_foreground" />
+        <attr name="parallax_intensity_foreground" />
+        <attr name="tilt_sensitivity_foreground" />
+        <attr name="forward_tilt_offset_foreground" />
+        <attr name="max_translation_foreground" />
+        <attr name="scaled_intensity_foreground" />
+    </declare-styleable>
+
+    <declare-styleable name="ParallaxView">
         <attr name="parallax_intensity" format="float" />
         <attr name="tilt_sensitivity" format="float" />
         <attr name="forward_tilt_offset" format="float" />
