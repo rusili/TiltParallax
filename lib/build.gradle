@@ -2,6 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+ext {
+    junit5 = "5.3.2"
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -27,6 +31,6 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.1.0-alpha04'
 
     // JUnit 5L:
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.2'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
 }
