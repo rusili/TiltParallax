@@ -20,7 +20,7 @@ class DoubleParallaxView @JvmOverloads constructor(
     private val parallaxViews: List<ParallaxView>
 
     init {
-        inflate(context, R.layout.view_triple_parallax, this)
+        inflate(context, R.layout.view_double_parallax, this)
 
         parallaxViews = listOf(
             findViewById(R.id.doubleParallaxBackground),
