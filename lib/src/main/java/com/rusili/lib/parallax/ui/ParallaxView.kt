@@ -33,7 +33,7 @@ import com.rusili.lib.parallax.domain.SensorInterpreter
 internal const val DEFAULT_INTENSITY_MULTIPLIER = 1.25f
 internal const val DEFAULT_MAXIMUM_TRANSLATION = 0.05f
 
-class ParallaxImageView @JvmOverloads constructor(
+class ParallaxView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
@@ -74,36 +74,36 @@ class ParallaxImageView @JvmOverloads constructor(
 
         context.withStyledAttributes(
             attrs,
-            R.styleable.ParallaxImageView,
+            R.styleable.ParallaxView,
             defStyle, 0
         ) {
             setParallaxIntensity(
                 getFloat(
-                    R.styleable.ParallaxImageView_parallax_intensity,
+                    R.styleable.ParallaxView_parallax_intensity,
                     DEFAULT_INTENSITY_MULTIPLIER
                 )
             )
             setScaleIntensityPerAxis(
                 getBoolean(
-                    R.styleable.ParallaxImageView_scaled_intensity,
+                    R.styleable.ParallaxView_scaled_intensity,
                     true
                 )
             )
             setMaximumChange(
                 getFloat(
-                    R.styleable.ParallaxImageView_max_translation,
+                    R.styleable.ParallaxView_max_translation,
                     DEFAULT_MAXIMUM_TRANSLATION
                 )
             )
             setTiltSensitivity(
                 getFloat(
-                    R.styleable.ParallaxImageView_tilt_sensitivity,
+                    R.styleable.ParallaxView_tilt_sensitivity,
                     DEFAULT_TILT_SENSITIVITY
                 )
             )
             setForwardTiltOffset(
                 getFloat(
-                    R.styleable.ParallaxImageView_forward_tilt_offset,
+                    R.styleable.ParallaxView_forward_tilt_offset,
                     DEFAULT_FORWARD_TILT_OFFSET
                 )
             )
@@ -143,7 +143,7 @@ class ParallaxImageView @JvmOverloads constructor(
         sensorManager = (context.getSystemService(Context.SENSOR_SERVICE) as? SensorManager)
             ?.apply {
                 registerListener(
-                    this@ParallaxImageView,
+                    this@ParallaxView,
                     getDefaultSensor(Sensor.TYPE_ORIENTATION),
                     SensorManager.SENSOR_DELAY_FASTEST
                 )
@@ -151,7 +151,7 @@ class ParallaxImageView @JvmOverloads constructor(
     }
 
     /**
-     * Unregisters the ParallaxImageView's SensorManager. Should be called in onPause from
+     * Unregisters the ParallaxView's SensorManager. Should be called in onPause from
      * an Activity or Fragment to avoid continuing sensor usage.
      */
     fun unregisterSensorManager() {

@@ -5,19 +5,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.rusili.lib.parallax.ui.ParallaxThreeLayerView
-        android:id="@+id/sample3dParallaxView"
+    <com.rusili.lib.parallax.ui.TripleParallaxView
+        android:id="@+id/sampleTripleParallaxView"
         android:layout_width="match_parent"
         android:layout_height="256dp"
-        app:parallax_intensity_background=""
-        app:image_background="@drawable/sample_3dparallax_background"
-        app:image_foreground="@drawable/sample_3dparallax_foreground"
-        app:image_middleground="@drawable/sample_3dparallax_middleground"
+        app:image_background="@drawable/sample_tripleparallax_background"
+        app:image_foreground="@drawable/sample_tripleparallax_foreground"
+        app:image_middleground="@drawable/sample_tripleparallax_middleground"
         app:tilt_sensitivity_background="1.7"
         app:tilt_sensitivity_foreground="1.2"
         app:tilt_sensitivity_middleground="1.45" />
 
-    <com.rusili.lib.parallax.ui.ParallaxImageView
+    <com.rusili.lib.parallax.ui.DoubleParallaxView
+        android:id="@+id/sampleDoubleParallaxView"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        app:image_background="@drawable/sample_doubleparallax_background"
+        app:image_foreground="@drawable/sample_doubleparallax_foreground"
+        app:tilt_sensitivity_background="1.7"
+        app:tilt_sensitivity_foreground="1.2" />
+
+    <com.rusili.lib.parallax.ui.ParallaxView
         android:id="@+id/sampleSingleParallaxView"
         android:layout_width="match_parent"
         android:layout_height="256dp"
