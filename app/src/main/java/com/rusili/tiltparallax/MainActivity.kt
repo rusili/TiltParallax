@@ -15,13 +15,13 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         sampleSingleParallaxView.registerSensorManager()
         sampleDoubleParallaxView.registerSensors()
-        sampleTripleParallaxView.registerSensors()
+//        sampleTripleParallaxView.registerSensors()
     }
 
     override fun onPause() {
         sampleSingleParallaxView.unregisterSensorManager()
         sampleDoubleParallaxView.unregisterSensors()
-        sampleTripleParallaxView.unregisterSensors()
+//        sampleTripleParallaxView.unregisterSensors()
         super.onPause()
     }
 }
