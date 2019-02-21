@@ -156,8 +156,7 @@ ParallaxView | TripleParallaxView
 ```xml
     <com.rusili.lib.parallax.ui.ParallaxView
         app:forward_tilt_offest="0.1"
-```
-```xml
+
     <com.rusili.lib.parallax.ui.TripleParallaxView
         app:forward_tilt_offest_background="0.1"
         app:forward_tilt_offest_middleground="0.2"
