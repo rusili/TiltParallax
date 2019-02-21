@@ -4,6 +4,7 @@
 
 ![Latest Version](https://img.shields.io/badge/latest%20version-v0.1-70D6F2.svg)
 ![Min SDK](https://img.shields.io/badge/min%20sdk-18-ED5735.svg)
+![Target SDK](https://img.shields.io/badge/target%20sdk-28-05A580.svg)
 
 BUILD STATUS BADGE
 
