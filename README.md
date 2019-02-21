@@ -107,7 +107,6 @@ I recommend doing it ```onStart```/```onResume``` and then unregistering it ```o
 Learn how to tinker and tweak the parallax settings to your specific needs!
 
 #### Getting a single ParallaxView from your TripleParallaxView
-Kotlin
 ```kotlin
     tripleParallaxView.getBackgroundLayer()
     tripleParallaxView.getMiddlegroundLayer()
