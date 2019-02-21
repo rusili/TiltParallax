@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fillViewport="true">
 
-    <com.rusili.lib.parallax.ui.DoubleParallaxView
-        android:id="@+id/sampleDoubleParallaxView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="256dp"
-        app:image_background="@drawable/sample_doubleparallax_background"
-        app:image_foreground="@drawable/sample_doubleparallax_foreground"
-        app:tilt_sensitivity_background="1.7"
-        app:tilt_sensitivity_foreground="1.2" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <com.rusili.lib.parallax.ui.ParallaxView
-        android:id="@+id/sampleSingleParallaxView"
-        android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:src="@drawable/sample_singleparallax_image"
-        app:forward_tilt_offset="0.1"
-        app:parallax_intensity="1.5"
-        app:tilt_sensitivity="1.25" />
+        <com.rusili.lib.parallax.ui.DoubleParallaxView
+            android:id="@+id/sampleDoubleParallaxView"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            app:image_background="@drawable/sample_doubleparallax_background"
+            app:image_foreground="@drawable/sample_doubleparallax_foreground"
+            app:tilt_sensitivity_background="1.7"
+            app:tilt_sensitivity_foreground="1.2" />
 
-</LinearLayout>
+        <com.rusili.lib.parallax.ui.ParallaxView
+            android:id="@+id/sampleSingleParallaxView"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:src="@drawable/sample_singleparallax_image"
+            app:forward_tilt_offset="0.1"
+            app:parallax_intensity="1.5"
+            app:tilt_sensitivity="1.25" />
+
+    </LinearLayout>
+</ScrollView>
