@@ -116,11 +116,11 @@ Kotlin
 
 #### Setting parallax intensity
 ##### XML </br>
-ParallaxView:
+ParallaxView
 ```xml
     app:parallax_intensity="1.5"
 ```
-TripleParallaxView:
+TripleParallaxView
 ```xml
     app:parallax_intensity_background="1.75"
     app:parallax_intensity_middleground="1.5"
@@ -136,10 +136,12 @@ TripleParallaxView:
 ```
 
 #### Setting tilt sensitivity
-XML
+##### XML </br>
+ParallaxView
 ```xml
     app:tilt_sensitivity="1.25"
 ```
+TripleParallaxView
 ```xml
     app:tilt_sensitivity_background="1.7"
     app:tilt_sensitivity_middleground="1.45"
@@ -155,7 +157,8 @@ Kotlin
 ```
 
 #### Setting forward tilt offset
-XML
+##### XML </br>
+ParallaxView
 ```xml
     app:forward_tilt_offest="0.1"
 ```
@@ -170,21 +173,21 @@ Kotlin
 ```
 
 #### Setting scale intensity per axis
-XML
+##### XML
 ```xml
     app:parallax_intensity="true"
 ```
-Kotlin
+##### Kotlin
 ```kotlin
     singleParallaxView.setScaleIntensityPerAxis(true)
 ```
 
 #### Setting maximum translation
-XML
+##### XML
 ```xml
     app:max_translation="0.05"
 ```
-Kotlin
+##### Kotlin
 ```kotlin
     singleParallaxView.setMaximumChange(0.05)
 ```
