@@ -3,6 +3,7 @@
 ![banner]()
 
 [![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
+![Latest Version](https://img.shields.io/badge/latest%20version-0.1-0C6CCE.svg)
 
 > An Android view for displaying images that scrolls as the user tilts their phone to create a parallax effect.
 
