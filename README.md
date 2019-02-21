@@ -24,6 +24,11 @@ Check out the sample bundled and wiki pages for more in depth documentation.
   - [Install](#install)
   - [Implementation](#implementation)
 - [Usage](#usage)
+  - [Parallax Intensity](#setting-parallax-intensity)
+  - [Tilt Sensitivity](#setting-tilt-sensitivity)
+  - [Forward Tilt Offset](#setting-forward-tilt-offset)
+  - [Scale Intensity Per Axis](#setting-scale-intensity-per-axis)
+  - [Maximum Change](#setting-maximum-change)
 - [Contributing](#contributing)
 - [License](#license)
 
