@@ -117,12 +117,11 @@ I recommend doing it ```onStart```/```onResume``` and then unregistering it ```o
 
 #### Setting parallax intensity
 ##### XML </br>
-ParallaxView
+ParallaxView | TripleParallaxView
+--- | ---
 ```xml
     app:parallax_intensity="1.5"
-```
-TripleParallaxView
-```xml
+``` | ```xml
     app:parallax_intensity_background="1.75"
     app:parallax_intensity_middleground="1.5"
     app:parallax_intensity_foreground="1.25"
