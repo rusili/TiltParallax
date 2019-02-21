@@ -108,7 +108,7 @@ I recommend doing it ```onStart```/```onResume``` and then unregistering it ```o
 
 ## Usage
 
-#### Getting a single ParallaxView from your TripleParallaxView
+### Getting a single ParallaxView from a TripleParallaxView
 ```kotlin
     tripleParallaxView.getBackgroundLayer()
     tripleParallaxView.getMiddlegroundLayer()
