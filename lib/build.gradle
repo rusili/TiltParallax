@@ -2,6 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+ext {
+    appCompat = "1.1.0-alpha02"
+    ktxCore = "1.1.0-alpha04"
+    junit5 = "5.3.2"
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -22,11 +28,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
-    implementation 'androidx.core:core-ktx:1.1.0-alpha04'
+    implementation "androidx.appcompat:appcompat:$appCompat"
+    implementation "androidx.core:core-ktx:$ktxCore"
 
     // JUnit 5L:
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.2'
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit5"
 }
