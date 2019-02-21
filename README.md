@@ -144,7 +144,7 @@ TripleParallaxView
     app:tilt_sensitivity_middleground="1.45"
     app:tilt_sensitivity_foreground="1.2"
 ```
-Kotlin
+##### Kotlin
 ```kotlin
     singleParallaxView.setTiltSensitivity(1.25)
 
@@ -162,7 +162,7 @@ ParallaxView
     app:forward_tilt_offest_middleground="0.2"
     app:forward_tilt_offest_foreground="0.3"
 ```
-Kotlin
+##### Kotlin
 ```kotlin
     singleParallaxView.setForwardTiltOffset(0.1)
     
