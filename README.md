@@ -152,6 +152,13 @@ ParallaxView | TripleParallaxView
 ```
 
 ### Setting forward tilt offset
+```xml
+    /**
+     * Sets the forward tilt offset dimension, allowing for the image to be
+     * centered while the phone is "naturally" tilted forwards.
+     * Higher values sets the natural "center" higher up on the image.
+     *
+```
 #### XML
 ```xml
     <com.rusili.lib.parallax.ui.ParallaxView
