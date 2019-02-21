@@ -115,18 +115,22 @@ I recommend doing it ```onStart```/```onResume``` and then unregistering it ```o
     tripleParallaxView.getForegroundLayer()
 ```
 
-#### Setting parallax intensity
-##### XML </br>
-ParallaxView | TripleParallaxView
---- | ---
+### Setting parallax intensity
+
+> Sets the intensity of the parallax effect. 
+> The stronger the effect, the more "zoomed in" the image will be, giving it more space to scroll.
+
+#### XML
 ```xml
-    app:parallax_intensity="1.5"
-``` | ```xml
-    app:parallax_intensity_background="1.75"
-    app:parallax_intensity_middleground="1.5"
-    app:parallax_intensity_foreground="1.25"
+    <com.rusili.lib.parallax.ui.ParallaxView
+        app:parallax_intensity="1.5" />
+
+    <com.rusili.lib.parallax.ui.TripleParallaxView
+        app:parallax_intensity_background="1.75"
+        app:parallax_intensity_middleground="1.5"
+        app:parallax_intensity_foreground="1.25" />
 ```
-##### Kotlin
+#### Kotlin
 ```kotlin
     singleParallaxView.setParallaxIntensity(1.5)
     
@@ -135,6 +139,9 @@ ParallaxView | TripleParallaxView
 
 ### Setting tilt sensitivity
 
+> Sets the parallax tilt sensitivity for the image view. The stronger the sensitivity, the more a given tilt will scroll the image. 
+> Lesser sensitivities decreases the amount of scrolling for any given tilt.
+     
 #### XML
 ```xml
     <com.rusili.lib.parallax.ui.ParallaxView
