@@ -41,8 +41,7 @@ It only takes 2 steps to get our library to work!
 
 #### Step 1
 
-Add one of the 3 custom views to your project. </br>
-In your layout xml, add </br>
+Add one of the 3 custom views to your project. In your layout xml, add </br>
 
 ##### Single Parallax Layer
 
@@ -57,8 +56,6 @@ In your layout xml, add </br>
         app:tilt_sensitivity="1.25" />
 ```
 
-or </br>
-
 ##### Double Parallax Layer
 
 ```xml
@@ -71,8 +68,6 @@ or </br>
         app:tilt_sensitivity_background="1.7"
         app:tilt_sensitivity_foreground="1.2" />
 ```
-
-or </br>
 
 ##### Triple Parallax Layer
 
@@ -91,8 +86,7 @@ or </br>
 
 #### Step 2
 You need to register the sensors for your parallax views or else they won't work! </br>
-I recommend doing it ```onStart```/```onResume``` and then unregistering it ```onPause```. </br>
-so in your Activity/Fragment: </br>
+I recommend doing it ```onStart```/```onResume``` and then unregistering it ```onPause```. So in your Activity/Fragment: </br>
 
 ```Kotlin
     override fun onResume() {
