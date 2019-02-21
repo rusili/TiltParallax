@@ -151,8 +151,8 @@ ParallaxView | TripleParallaxView
     tripleParallaxView.getBackgroundLayer().setTiltSensitivity(1.25)
 ```
 
-#### Setting forward tilt offset
-##### XML </br>
+### Setting forward tilt offset
+#### XML
 ```xml
     <com.rusili.lib.parallax.ui.ParallaxView
         app:forward_tilt_offest="0.1"
@@ -162,7 +162,7 @@ ParallaxView | TripleParallaxView
         app:forward_tilt_offest_middleground="0.2"
         app:forward_tilt_offest_foreground="0.3"
 ```
-##### Kotlin
+#### Kotlin
 ```kotlin
     singleParallaxView.setForwardTiltOffset(0.1)
     
