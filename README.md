@@ -59,7 +59,7 @@ In your layout xml, add </br>
 
 or </br>
 
-##### Triple Parallax Layer
+##### Double Parallax Layer
 
 ```xml
     <com.rusili.lib.parallax.ui.DoubleParallaxView
@@ -92,7 +92,7 @@ or </br>
 #### Step 2
 You need to register the sensors for your parallax views or else they won't work! </br>
 I recommend doing it ```onStart```/```onResume``` and then unregistering it ```onPause```. </br>
-so in your Activity/Fragment </br>
+so in your Activity/Fragment: </br>
 
 ```Kotlin
     override fun onResume() {
@@ -124,7 +124,8 @@ Kotlin
 XML
 ```xml
     app:parallax_intensity="1.5"
-
+```
+```xml
     app:parallax_intensity_background="1.75"
     app:parallax_intensity_middleground="1.5"
     app:parallax_intensity_foreground="1.25"
@@ -151,8 +152,7 @@ XML
 Kotlin
 ```kotlin
     singleParallaxView.setTiltSensitivity(1.25)
-```
-```kotlin
+
     tripleParallaxView.getBackgroundLayer().setTiltSensitivity(1.75)
     tripleParallaxView.getMiddlegroundLayer().setTiltSensitivity(1.5)
     tripleParallaxView.getForegroundLayer().setTiltSensitivity(1.25)
