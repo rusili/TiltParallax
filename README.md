@@ -20,8 +20,9 @@ Download our sample app and play with it!
 Check out the sample bundled and wiki pages for more in depth documentation.
 
 - [Features](#features)
-- [Install](#install)
 - [Getting Started](#getting-started)
+  - [Install](#install)
+  - [Implementation](#implementation)
 - [API](#api)
 - [Contributing](#contributing)
 - [License](#license)
