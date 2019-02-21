@@ -116,9 +116,11 @@ Kotlin
 
 #### Setting parallax intensity
 XML
+ParallaxView:
 ```xml
     app:parallax_intensity="1.5"
 ```
+TripleParallaxView:
 ```xml
     app:parallax_intensity_background="1.75"
     app:parallax_intensity_middleground="1.5"
