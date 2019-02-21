@@ -133,18 +133,19 @@ ParallaxView | TripleParallaxView
     tripleParallaxView.getBackgroundLayer().setParallaxIntensity(1.5)
 ```
 
-#### Setting tilt sensitivity
-| aaaa  | bbbbb |
-| ----- | ----- |
-| xml   | `xml`                                               |
-|       | `    <com.rusili.lib.parallax.ui.ParallaxView` 
-|       | `        app:tilt_sensitivity="1.25"`                 |
-|       | `    <com.rusili.lib.parallax.ui.TripleParallaxView`  |
-|       | `        app:tilt_sensitivity_background="1.7"`       |
-|       | `        app:tilt_sensitivity_middleground="1.45"`    |
-|       | `        app:tilt_sensitivity_foreground="1.2"`       |
+### Setting tilt sensitivity
 
-##### Kotlin
+#### XML
+```xml
+    <com.rusili.lib.parallax.ui.ParallaxView
+        app:tilt_sensitivity="1.25" />
+
+    <com.rusili.lib.parallax.ui.TripleParallaxView
+        app:tilt_sensitivity_background="1.2"
+        app:tilt_sensitivity_middleground="1.45"
+        app:tilt_sensitivity_foreground="1.7" />
+```
+#### Kotlin
 ```kotlin
     singleParallaxView.setTiltSensitivity(1.25)
 
@@ -153,19 +154,18 @@ ParallaxView | TripleParallaxView
 
 ### Setting forward tilt offset
 
-> Sets the forward tilt offset dimension, allowing for the image to be
-> vertically centered while the phone is "naturally" tilted forwards.
+> Sets the forward tilt offset dimension, allowing for the image to be vertically centered while the phone is "naturally" tilted forwards.
 > Higher values sets the natural "center" higher up on the image.
 
 #### XML
 ```xml
     <com.rusili.lib.parallax.ui.ParallaxView
-        app:forward_tilt_offest="0.1" />
+        app:forward_tilt_offset="0.1" />
 
     <com.rusili.lib.parallax.ui.TripleParallaxView
-        app:forward_tilt_offest_background="0.1"
-        app:forward_tilt_offest_middleground="0.2"
-        app:forward_tilt_offest_foreground="0.3" />
+        app:forward_tilt_offset_background="0.1"
+        app:forward_tilt_offset_middleground="0.2"
+        app:forward_tilt_offset_foreground="0.3" />
 ```
 #### Kotlin
 ```kotlin
@@ -176,8 +176,7 @@ ParallaxView | TripleParallaxView
 
 ### Setting scale intensity per axis
 
-> Sets whether translation should be limited to the image's bounds or
-> to the smaller of the two axis' translation limits.
+> Sets whether translation should be limited to the image's bounds or to the smaller of the two axis' translation limits.
 
 #### XML
 ```xml
@@ -193,8 +192,7 @@ ParallaxView | TripleParallaxView
 
 ### Setting maximum translation
 
-> Sets the maximum percentage of the image that image matrix is allowed to scroll
-> for each sensor reading.
+> Sets the maximum percentage of the image that image matrix is allowed to scroll for each sensor reading.
      
 #### XML
 ```xml
