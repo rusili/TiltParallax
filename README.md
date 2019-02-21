@@ -137,7 +137,7 @@ ParallaxView | TripleParallaxView
 | aaaa  | bbbbb |
 | ----- | ----- |
 | xml   | `xml`                                               |
-|       | `    <com.rusili.lib.parallax.ui.ParallaxView`         |
+|       | `    <com.rusili.lib.parallax.ui.ParallaxView` 
 |       | `        app:tilt_sensitivity="1.25"`                 |
 |       | `    <com.rusili.lib.parallax.ui.TripleParallaxView`  |
 |       | `        app:tilt_sensitivity_background="1.7"`       |
@@ -153,16 +153,15 @@ ParallaxView | TripleParallaxView
 
 #### Setting forward tilt offset
 ##### XML </br>
-ParallaxView
 ```xml
     <com.rusili.lib.parallax.ui.ParallaxView
-    app:forward_tilt_offest="0.1"
+        app:forward_tilt_offest="0.1"
 ```
-TripleParallaxView
 ```xml
-    app:forward_tilt_offest_background="0.1"
-    app:forward_tilt_offest_middleground="0.2"
-    app:forward_tilt_offest_foreground="0.3"
+    <com.rusili.lib.parallax.ui.TripleParallaxView
+        app:forward_tilt_offest_background="0.1"
+        app:forward_tilt_offest_middleground="0.2"
+        app:forward_tilt_offest_foreground="0.3"
 ```
 ##### Kotlin
 ```kotlin
