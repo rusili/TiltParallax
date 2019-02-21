@@ -1,6 +1,6 @@
 # TiltParallax
 
-![banner]()
+![banner](/gifs/banner.gif)
 
 ![Latest Version](https://img.shields.io/badge/latest%20version-v0.1-70D6F2.svg)
 ![Min SDK](https://img.shields.io/badge/min%20sdk-18-ED5735.svg)
@@ -16,7 +16,7 @@ This library contains two separate custom views that can simulate a parallax eff
 
 ## Example
 
-some gif
+![banner](/gifs/example.gif)
 
 Download our sample app and play with it!
 
