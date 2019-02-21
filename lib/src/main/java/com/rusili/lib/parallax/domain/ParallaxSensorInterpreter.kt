@@ -36,7 +36,7 @@ internal class SensorInterpreter {
         event: Event3,
         rotation: Int
     ): Event3? =
-        Event3().takeIf { event.isValid() }
+        Event3().takeIf(Event3::isValid)
             ?.copy(event.x, event.y, event.z)
             ?.apply {
                 applyRotation(rotation)
