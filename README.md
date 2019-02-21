@@ -6,7 +6,7 @@
 ![Min SDK](https://img.shields.io/badge/min%20sdk-18-ED5735.svg)
 ![Target SDK](https://img.shields.io/badge/target%20sdk-28-05A580.svg)
 
-BUILD STATUS BADGE
+TODO: BUILD STATUS BADGE
 
 > An Android view for displaying images that scrolls as the user tilts their phone to create a parallax effect.
 
@@ -16,14 +16,11 @@ This library contains two separate custom views that can simulate a parallax eff
 
 ## Example
 
-![banner](/gifs/example.gif)
+![example](/gifs/example.gif)
 
 Download our sample app and play with it!
 
 ## Table of Contents
-Check out the sample bundled and wiki pages for more in depth documentation.
-
-- [Features](#features)
 - [Getting Started](#getting-started)
   - [Install](#install)
   - [Implementation](#implementation)
@@ -36,15 +33,13 @@ Check out the sample bundled and wiki pages for more in depth documentation.
 - [Contributing](#contributing)
 - [License](#license)
 
-## Features
- TODO
-
 ## Getting started
 
 ## Install
 
 Add the following Gradle dependency to your project ```build.gradle``` file:
 
+TODO: PUBLISH LIBRARY
 ```
 ```
 
