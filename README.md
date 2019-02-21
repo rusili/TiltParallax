@@ -37,7 +37,7 @@ Add the following Gradle dependency to your project ```build.gradle``` file:
 
 ## Getting started
 
-It only takes a few steps to get our library to work!
+It only takes 2 steps to get our library to work!
 
 #### Step 1
 
