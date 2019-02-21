@@ -157,6 +157,7 @@ ParallaxView
 ```xml
     app:forward_tilt_offest="0.1"
 ```
+TripleParallaxView
 ```xml
     app:forward_tilt_offest_background="0.1"
     app:forward_tilt_offest_middleground="0.2"
