@@ -154,7 +154,7 @@ ParallaxView | TripleParallaxView
 ### Setting forward tilt offset
 
 > Sets the forward tilt offset dimension, allowing for the image to be
-> centered while the phone is "naturally" tilted forwards.
+> vertically centered while the phone is "naturally" tilted forwards.
 > Higher values sets the natural "center" higher up on the image.
 
 #### XML
@@ -174,26 +174,34 @@ ParallaxView | TripleParallaxView
     tripleParallaxView.getBackgroundLayer().setForwardTiltOffset(0.1)
 ```
 
-#### Setting scale intensity per axis
-##### XML
-ParallaxView
+### Setting scale intensity per axis
+
+> Sets whether translation should be limited to the image's bounds or
+> to the smaller of the two axis' translation limits.
+
+#### XML
 ```xml
-    app:parallax_intensity="true"
+    <com.rusili.lib.parallax.ui.ParallaxView
+        app:parallax_intensity="true" />
 ```
-##### Kotlin
+#### Kotlin
 ```kotlin
     singleParallaxView.setScaleIntensityPerAxis(true)
     
     tripleParallaxView.getBackgroundLayer().setScaleIntensityPerAxis(true)
 ```
 
-#### Setting maximum translation
-##### XML
-ParallaxView
+### Setting maximum translation
+
+> Sets the maximum percentage of the image that image matrix is allowed to scroll
+> for each sensor reading.
+     
+#### XML
 ```xml
-    app:max_translation="0.05"
+    <com.rusili.lib.parallax.ui.ParallaxView
+        app:max_translation="0.05" />
 ```
-##### Kotlin
+#### Kotlin
 ```kotlin
     singleParallaxView.setMaximumChange(0.05)
     
