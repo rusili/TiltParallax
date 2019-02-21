@@ -139,13 +139,10 @@ ParallaxView | TripleParallaxView
 | xml   | `xml`                                               |
 |       | `    <com.rusili.lib.parallax.ui.ParallaxView`         |
 |       | `        app:tilt_sensitivity="1.25"`                 |
-|       | `                                                |
-|       | `xml`                                             |
 |       | `    <com.rusili.lib.parallax.ui.TripleParallaxView`  |
 |       | `        app:tilt_sensitivity_background="1.7"`       |
 |       | `        app:tilt_sensitivity_middleground="1.45"`    |
 |       | `        app:tilt_sensitivity_foreground="1.2"`       |
-|       | `                                               |
 
 ##### Kotlin
 ```kotlin
