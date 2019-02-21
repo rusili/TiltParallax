@@ -130,9 +130,7 @@ TripleParallaxView
 ```kotlin
     singleParallaxView.setParallaxIntensity(1.5)
     
-    tripleParallaxView.getBackgroundLayer().setParallaxIntensity(1.75)
-    tripleParallaxView.getMiddlegroundLayer().setParallaxIntensity(1.5)
-    tripleParallaxView.getForegroundLayer().setParallaxIntensity(1.25)
+    tripleParallaxView.getBackgroundLayer().setParallaxIntensity(1.5)
 ```
 
 #### Setting tilt sensitivity
@@ -151,9 +149,7 @@ Kotlin
 ```kotlin
     singleParallaxView.setTiltSensitivity(1.25)
 
-    tripleParallaxView.getBackgroundLayer().setTiltSensitivity(1.75)
-    tripleParallaxView.getMiddlegroundLayer().setTiltSensitivity(1.5)
-    tripleParallaxView.getForegroundLayer().setTiltSensitivity(1.25)
+    tripleParallaxView.getBackgroundLayer().setTiltSensitivity(1.25)
 ```
 
 #### Setting forward tilt offset
@@ -170,6 +166,8 @@ ParallaxView
 Kotlin
 ```kotlin
     singleParallaxView.setForwardTiltOffset(0.1)
+    
+    tripleParallaxView.getBackgroundLayer().setForwardTiltOffset(0.1)
 ```
 
 #### Setting scale intensity per axis
@@ -180,6 +178,8 @@ Kotlin
 ##### Kotlin
 ```kotlin
     singleParallaxView.setScaleIntensityPerAxis(true)
+    
+    tripleParallaxView.getBackgroundLayer().setScaleIntensityPerAxis(true)
 ```
 
 #### Setting maximum translation
@@ -190,6 +190,8 @@ Kotlin
 ##### Kotlin
 ```kotlin
     singleParallaxView.setMaximumChange(0.05)
+    
+    tripleParallaxView.getBackgroundLayer().setMaximumChange(0.05)
 ```
 
 ## Contributing
