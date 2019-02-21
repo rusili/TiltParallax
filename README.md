@@ -41,14 +41,14 @@ It only takes a few steps to get our library to work!
 
 #### Step 1
 
-Add one of the custom views to your project. </br>
+Add one of the 3 custom views to your project. </br>
 In your layout xml, add </br>
 
 ##### Single Parallax Layer
 
 ```xml
-    <com.rusili.lib.parallax.ui.ParallaxImageView
-        android:id="@+id/sampleSingleParallax"
+    <com.rusili.lib.parallax.ui.ParallaxView
+        android:id="@+id/sampleSingleParallaxView"
         android:layout_width="match_parent"
         android:layout_height="256dp"
         android:src="@drawable/sample_singleparallax_image"
@@ -62,13 +62,28 @@ or </br>
 ##### Triple Parallax Layer
 
 ```xml
-    <com.rusili.lib.parallax.ui.ParallaxThreeLayerView
-        android:id="@+id/sample3dParallax"
+    <com.rusili.lib.parallax.ui.DoubleParallaxView
+        android:id="@+id/sampleDoubleParallaxView"
         android:layout_width="match_parent"
         android:layout_height="256dp"
-        app:image_background="@drawable/sample_3dparallax_background"
-        app:image_foreground="@drawable/sample_3dparallax_foreground"
-        app:image_middleground="@drawable/sample_3dparallax_middleground"
+        app:image_background="@drawable/sample_doubleparallax_background"
+        app:image_foreground="@drawable/sample_doubleparallax_foreground"
+        app:tilt_sensitivity_background="1.7"
+        app:tilt_sensitivity_foreground="1.2" />
+```
+
+or </br>
+
+##### Triple Parallax Layer
+
+```xml
+    <com.rusili.lib.parallax.ui.TripleParallaxView
+        android:id="@+id/sampleTripleParallaxView"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        app:image_background="@drawable/sample_tripleparallax_background"
+        app:image_foreground="@drawable/sample_tripleparallax_foreground"
+        app:image_middleground="@drawable/sample_tripleparallax_middleground"
         app:tilt_sensitivity_background="1.7"
         app:tilt_sensitivity_foreground="1.2"
         app:tilt_sensitivity_middleground="1.45" />
@@ -82,13 +97,13 @@ so in your Activity/Fragment </br>
 ```Kotlin
     override fun onResume() {
         super.onResume()
-        sampleSingleParallaxView.registerSensorManager()
-        sample3dParallaxView.registerSensors()
+        sampleSingleParallaxView.registerSensor()
+        sampleDoubleParallaxView.registerSensors()
     }
     
     override fun onPause() {
-        sample3dParallaxView.unregisterSensors()
-        sampleSingleParallaxView.unregisterSensorManager()
+        sampleSingleParallaxView.unregisterSensor()
+        sampleDoubleParallaxView.unregisterSensors()
         super.onPause()
     }
 ```
@@ -97,11 +112,7 @@ so in your Activity/Fragment </br>
 
 Learn how to tinker and tweak the parallax settings to your specific needs!
 
-Notes for following code snippets <br/>
-```singleParallaxView``` is a ```ParallaxImageView``` and <br/>
-```tripleParallaxView``` is a ```ParallaxThreeLayerView``` <br/>
-
-#### Getting a single ParallaxImageView from your ParallaxThreeLayerView
+#### Getting a single ParallaxView from your TripleParallaxView
 Kotlin
 ```kotlin
     tripleParallaxView.getBackgroundLayer()
@@ -113,8 +124,7 @@ Kotlin
 XML
 ```xml
     app:parallax_intensity="1.5"
-```
-```xml
+
     app:parallax_intensity_background="1.75"
     app:parallax_intensity_middleground="1.5"
     app:parallax_intensity_foreground="1.25"
@@ -122,8 +132,7 @@ XML
 Kotlin
 ```kotlin
     singleParallaxView.setParallaxIntensity(1.5)
-```
-```kotlin
+    
     tripleParallaxView.getBackgroundLayer().setParallaxIntensity(1.75)
     tripleParallaxView.getMiddlegroundLayer().setParallaxIntensity(1.5)
     tripleParallaxView.getForegroundLayer().setParallaxIntensity(1.25)
