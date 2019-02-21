@@ -139,7 +139,7 @@ class ParallaxView @JvmOverloads constructor(
      * Registers a sensor manager with the parallax ImageView. Should be called in onResume
      * from an Activity or Fragment.
      */
-    fun registerSensorManager() {
+    fun registerSensor() {
         sensorManager = (context.getSystemService(Context.SENSOR_SERVICE) as? SensorManager)
             ?.apply {
                 registerListener(
@@ -154,7 +154,7 @@ class ParallaxView @JvmOverloads constructor(
      * Unregisters the ParallaxView's SensorManager. Should be called in onPause from
      * an Activity or Fragment to avoid continuing sensor usage.
      */
-    fun unregisterSensorManager() {
+    fun unregisterSensor() {
         sensorManager?.unregisterListener(this)
             .also { it == null }
     }

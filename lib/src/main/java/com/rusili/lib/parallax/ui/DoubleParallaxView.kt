@@ -43,11 +43,11 @@ class DoubleParallaxView @JvmOverloads constructor(
         parallaxViews[1]
 
     fun registerSensors() {
-        parallaxViews.forEach(ParallaxView::registerSensorManager)
+        parallaxViews.forEach(ParallaxView::registerSensor)
     }
 
     fun unregisterSensors() {
-        parallaxViews.forEach(ParallaxView::unregisterSensorManager)
+        parallaxViews.forEach(ParallaxView::unregisterSensor)
     }
 
     private fun TypedArray.setupViews() {
