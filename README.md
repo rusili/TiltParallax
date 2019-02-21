@@ -134,17 +134,19 @@ ParallaxView | TripleParallaxView
 ```
 
 #### Setting tilt sensitivity
-##### XML </br>
-ParallaxView
-```xml
-    app:tilt_sensitivity="1.25"
-```
-TripleParallaxView
-```xml
-    app:tilt_sensitivity_background="1.7"
-    app:tilt_sensitivity_middleground="1.45"
-    app:tilt_sensitivity_foreground="1.2"
-```
+| aaaa  | bbbbb |
+| ----- | ----- |
+| xml   | ```xml                                              |
+|       |     <com.rusili.lib.parallax.ui.ParallaxView        |
+|       |         app:tilt_sensitivity="1.25"                 |
+|       |  ```                                                |
+|       |  ```xml                                             |
+|       |     <com.rusili.lib.parallax.ui.TripleParallaxView  |
+|       |         app:tilt_sensitivity_background="1.7"       |
+|       |         app:tilt_sensitivity_middleground="1.45"    |
+|       |         app:tilt_sensitivity_foreground="1.2"       |
+|       |   ```                                               |
+
 ##### Kotlin
 ```kotlin
     singleParallaxView.setTiltSensitivity(1.25)
@@ -156,6 +158,7 @@ TripleParallaxView
 ##### XML </br>
 ParallaxView
 ```xml
+    <com.rusili.lib.parallax.ui.ParallaxView
     app:forward_tilt_offest="0.1"
 ```
 TripleParallaxView
