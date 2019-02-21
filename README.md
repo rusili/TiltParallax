@@ -108,13 +108,6 @@ I recommend doing it ```onStart```/```onResume``` and then unregistering it ```o
 
 ## Usage
 
-### Getting a single ParallaxView from a TripleParallaxView
-```kotlin
-    tripleParallaxView.getBackgroundLayer()
-    tripleParallaxView.getMiddlegroundLayer()
-    tripleParallaxView.getForegroundLayer()
-```
-
 ### Setting parallax intensity
 
 > Sets the intensity of the parallax effect. 
@@ -134,7 +127,9 @@ I recommend doing it ```onStart```/```onResume``` and then unregistering it ```o
 ```kotlin
     singleParallaxView.setParallaxIntensity(1.5)
     
-    tripleParallaxView.getBackgroundLayer().setParallaxIntensity(1.5)
+    tripleParallaxView.getBackgroundLayer().setParallaxIntensity(1.75)
+    tripleParallaxView.getMiddlegroundLayer().setParallaxIntensity(1.5)
+    tripleParallaxView.getForegroundLayer().setParallaxIntensity(1.25)
 ```
 
 ### Setting tilt sensitivity
@@ -156,7 +151,9 @@ I recommend doing it ```onStart```/```onResume``` and then unregistering it ```o
 ```kotlin
     singleParallaxView.setTiltSensitivity(1.25)
 
-    tripleParallaxView.getBackgroundLayer().setTiltSensitivity(1.25)
+    tripleParallaxView.getBackgroundLayer().setTiltSensitivity(1.2)
+    tripleParallaxView.getMiddlegroundLayer().setTiltSensitivity(1.45)
+    tripleParallaxView.getForegroundLayer().setTiltSensitivity(1.7)
 ```
 
 ### Setting forward tilt offset
@@ -179,6 +176,8 @@ I recommend doing it ```onStart```/```onResume``` and then unregistering it ```o
     singleParallaxView.setForwardTiltOffset(0.1)
     
     tripleParallaxView.getBackgroundLayer().setForwardTiltOffset(0.1)
+    tripleParallaxView.getMiddlegroundLayer().setTiltSensitivity(0.2)
+    tripleParallaxView.getForegroundLayer().setTiltSensitivity(0.3)
 ```
 
 ### Setting scale intensity per axis
