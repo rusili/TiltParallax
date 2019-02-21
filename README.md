@@ -171,6 +171,7 @@ ParallaxView
 
 #### Setting scale intensity per axis
 ##### XML
+ParallaxView
 ```xml
     app:parallax_intensity="true"
 ```
@@ -183,6 +184,7 @@ ParallaxView
 
 #### Setting maximum translation
 ##### XML
+ParallaxView
 ```xml
     app:max_translation="0.05"
 ```
