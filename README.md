@@ -28,6 +28,9 @@ A peek at our sample app: </br>
 
 IMAGE
 
+## Features
+ TODO
+
 ## Install
 
 Add the following Gradle dependency to your project ```build.gradle``` file:
@@ -39,11 +42,11 @@ Add the following Gradle dependency to your project ```build.gradle``` file:
 
 It only takes 2 steps to get our library to work!
 
-#### Step 1
+### Step 1
 
 Add one (or more) of the 3 custom views to your project's layout:
 
-##### Single Parallax Layer
+#### Single Parallax Layer
 
 ```xml
     <com.rusili.lib.parallax.ui.ParallaxView
@@ -84,7 +87,7 @@ Add one (or more) of the 3 custom views to your project's layout:
         app:tilt_sensitivity_middleground="1.45" />
 ```
 
-#### Step 2
+### Step 2
 Register the sensors for your parallax views or else they won't work!
 I recommend doing it ```onStart```/```onResume``` and then unregistering it ```onPause```. So in your Activity/Fragment:
 
