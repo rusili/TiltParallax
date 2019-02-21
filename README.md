@@ -11,22 +11,20 @@
 This library contains two separate custom views that can simulate a parallax effect when a user tilts their phone. The first one is a single layer that pans the image within the view to simulate a moving layer inside the phone. The second view combines three of those layers to simulate a 3d effect using 3 separate parallax layers.
 
 ## Example
+
 some gif
+
+Download our sample app and play with it!
 
 ## Table of Contents
 Check out the sample bundled and wiki pages for more in depth documentation.
 
+- [Features](#features)
 - [Install](#install)
 - [Getting Started](#getting-started)
 - [API](#api)
 - [Contributing](#contributing)
 - [License](#license)
-
-## Sample App
-
-A peek at our sample app: </br>
-
-IMAGE
 
 ## Features
  TODO
