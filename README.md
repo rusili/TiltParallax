@@ -23,7 +23,7 @@ Check out the sample bundled and wiki pages for more in depth documentation.
 - [Getting Started](#getting-started)
   - [Install](#install)
   - [Implementation](#implementation)
-- [API](#api)
+- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -106,9 +106,7 @@ I recommend doing it ```onStart```/```onResume``` and then unregistering it ```o
     }
 ```
 
-## API
-
-Learn how to tinker and tweak the parallax settings to your specific needs!
+## Usage
 
 #### Getting a single ParallaxView from your TripleParallaxView
 ```kotlin
