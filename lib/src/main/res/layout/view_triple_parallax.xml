@@ -3,19 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.rusili.lib.parallax.ui.ParallaxView
+    <com.ww.lib.parallax.ui.ParallaxView
         android:id="@+id/tripleParallaxBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <com.rusili.lib.parallax.ui.ParallaxView
+    <com.ww.lib.parallax.ui.ParallaxView
         android:id="@+id/tripleParallaxMiddleground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />
 
-    <com.rusili.lib.parallax.ui.ParallaxView
+    <com.ww.lib.parallax.ui.ParallaxView
         android:id="@+id/tripleParallaxForeground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

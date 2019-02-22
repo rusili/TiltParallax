@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.rusili.lib.parallax.ui
+package com.ww.lib.parallax.ui
 
 import android.content.Context
 import android.graphics.Matrix
@@ -26,12 +26,12 @@ import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.withStyledAttributes
-import com.rusili.lib.R
-import com.rusili.lib.parallax.domain.DEFAULT_FORWARD_TILT_OFFSET
-import com.rusili.lib.parallax.domain.DEFAULT_TILT_SENSITIVITY
-import com.rusili.lib.parallax.domain.Event3
-import com.rusili.lib.parallax.domain.ParallaxCalculator
-import com.rusili.lib.parallax.domain.SensorInterpreter
+import com.ww.lib.R
+import com.ww.lib.parallax.domain.DEFAULT_FORWARD_TILT_OFFSET
+import com.ww.lib.parallax.domain.DEFAULT_TILT_SENSITIVITY
+import com.ww.lib.parallax.domain.Event3
+import com.ww.lib.parallax.domain.ParallaxCalculator
+import com.ww.lib.parallax.domain.SensorInterpreter
 
 /**
  * Adds a parallax effect to an [AppCompatImageView] based on the phone's accelerometer.

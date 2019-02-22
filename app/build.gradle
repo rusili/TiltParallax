@@ -9,7 +9,7 @@ ext {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.rusili.tiltparallax"
+        applicationId "com.ww.tiltparallax"
         minSdkVersion 18
         targetSdkVersion 28
         versionCode 1

@@ -13,10 +13,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.rusili.lib
+package com.ww.lib
 
-import com.rusili.lib.parallax.domain.Event3
-import com.rusili.lib.parallax.domain.SensorInterpreter
+import com.ww.lib.parallax.domain.Event3
+import com.ww.lib.parallax.domain.SensorInterpreter
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test

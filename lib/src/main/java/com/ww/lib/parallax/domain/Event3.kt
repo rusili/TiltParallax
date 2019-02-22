@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.rusili.lib.parallax.domain
+package com.ww.lib.parallax.domain
 
 internal data class Event3(
     var x: Float = 0.0f,
